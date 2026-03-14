@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parjanya — AI Farm Intelligence for Every Indian Farmer</title>
+<meta name="description" content="Parjanya is India's AI-powered agricultural intelligence system. Crop disease detection, weather alerts, mandi price forecasts, smart irrigation — in your language, on any phone. Named from the Rigveda.">
+<meta property="og:title" content="Parjanya — AI Farm Intelligence">
+<meta property="og:description" content="Named from the Rigveda. Built for 140 million Indian farmers. AI that detects crop disease, predicts weather, and tells you the best day to sell.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║  PARJANYA — Complete Website File                                ║
+║  Built by Claude AI for you                                      ║
+║                                                                  ║
+║  TO GO LIVE (FREE, TODAY):                                       ║
+║  1. Go to netlify.com → Sign up free with Gmail                  ║
+║  2. Click "Add new site" → "Deploy manually"                     ║
+║  3. Drag THIS file onto the page                                 ║
+║  4. Your site is live! Share the link.                           ║
+║                                                                  ║
+║  FORM SUBMISSIONS:                                               ║
+║  When live on Netlify, form submissions go to your email.        ║
+║  Set notification: Netlify → Forms → your Gmail.                 ║
+║                                                                  ║
+║  THINGS YOU CAN CHANGE (tell Claude):                            ║
+║  • Phone number → search: PHONE_NUMBER                           ║
+║  • Email address → search: CONTACT_EMAIL                         ║
+║  • Your city/state → search: YOUR_LOCATION                       ║
+║  • Farmer count (500+) → search: FARMER_COUNT                    ║
+║  • Add new features → tell Claude what to add                    ║
+║  • Prices → search: PRICE_FREE / PRICE_PLUS / PRICE_AUTO         ║
+║  • Social media links → search: SOCIAL_LINKS                     ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<style>
+:root {
+  --earth:      #1c1208;
+  --bark:       #2e1f0e;
+  --mud:        #3d2810;
+  --clay:       #7a5230;
+  --sand:       #c4a46b;
+  --gold:       #c8880a;
+  --gold-light: #f0be45;
+  --gold-pale:  #fdf3dc;
+  --storm:      #162b1e;
+  --forest:     #2a5535;
+  --leaf:       #3a8045;
+  --mint:       #9acf9c;
+  --mist:       #eef6ef;
+  --cream:      #faf7f1;
+  --parchment:  #f4ecd5;
+  --white:      #ffffff;
+  --text:       #1c1208;
+  --muted:      #78694f;
+  --border:     rgba(74,50,25,0.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ── SCROLLBAR ─────────────────────────────────── */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--parchment)}
+::-webkit-scrollbar-thumb{background:var(--clay);border-radius:2px}
+
+/* ── NAV ───────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:999;
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:all .3s;
+}
+.nav.scrolled{
+  background:rgba(250,247,241,.96);
+  backdrop-filter:blur(14px);
+  padding:13px 48px;
+  box-shadow:0 1px 0 var(--border);
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:700;
+  color:var(--earth);
+  display:flex;align-items:center;gap:10px;
+}
+.logo-mark{
+  width:34px;height:34px;border-radius:9px;
+  background:var(--storm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;
+}
+.logo-text small{
+  display:block;font-family:'Outfit',sans-serif;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);font-weight:500;margin-top:1px;
+}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:13.5px;font-weight:500;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--earth)}
+.nav-cta{
+  display:flex;align-items:center;gap:8px;
+}
+.btn-nav{
+  padding:9px 20px;border-radius:100px;
+  font-size:13px;font-weight:500;
+  background:var(--earth);color:#fff;
+  transition:all .2s;
+}
+.btn-nav:hover{background:var(--forest);transform:translateY(-1px)}
+.btn-nav-ghost{
+  padding:9px 18px;border-radius:100px;
+  font-size:13px;font-weight:500;
+  background:transparent;color:var(--earth);
+  border:1.5px solid var(--border);
+  transition:all .2s;margin-right:6px;
+}
+.btn-nav-ghost:hover{border-color:var(--clay);background:var(--parchment)}
+
+/* ── HERO ───────────────────────────────────────── */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;
+  padding:140px 48px 100px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 75% 65% at 95% 5%, rgba(42,85,53,.1) 0%,transparent 60%),
+    radial-gradient(ellipse 55% 70% at 5% 95%, rgba(200,136,10,.07) 0%,transparent 60%),
+    linear-gradient(160deg,var(--cream) 0%,var(--parchment) 100%);
+}
+.rain-wrap{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.raindrop{
+  position:absolute;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(58,128,69,.22),transparent);
+  animation:fall linear infinite;border-radius:100px;
+}
+@keyframes fall{
+  0%{transform:translateY(-80px);opacity:0}
+  10%{opacity:1}90%{opacity:.3}
+  100%{transform:translateY(105vh);opacity:0}
+}
+.mandala{
+  position:absolute;right:-80px;top:50%;transform:translateY(-50%);
+  width:680px;height:680px;
+  opacity:.035;
+  border-radius:50%;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,var(--earth) 0deg 1.5deg,transparent 1.5deg 30deg);
+  animation:spin 100s linear infinite;
+}
+@keyframes spin{to{transform:translateY(-50%) rotate(360deg)}}
+
+.hero-grid{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  max-width:1200px;margin:0 auto;width:100%;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:5px 14px 5px 7px;
+  background:var(--parchment);
+  border:1px solid rgba(200,136,10,.28);
+  border-radius:100px;
+  font-size:11px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:26px;
+  animation:up .7s ease both;
+}
+.hero-eyebrow i{
+  width:20px;height:20px;border-radius:50%;
+  background:var(--gold);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;font-style:normal;
+}
+h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(50px,6.2vw,94px);
+  font-weight:700;line-height:1.0;
+  letter-spacing:-2px;color:var(--earth);
+  margin-bottom:20px;
+  animation:up .7s ease .1s both;
+}
+h1 .skt{
+  display:block;font-size:.38em;font-weight:400;
+  letter-spacing:.03em;color:var(--sand);margin-bottom:6px;
+}
+h1 em{font-style:italic;color:var(--forest);display:block}
+.hero-sub{
+  font-size:17px;line-height:1.78;color:var(--muted);
+  max-width:470px;margin-bottom:38px;
+  animation:up .7s ease .2s both;
+}
+.hero-sub strong{color:var(--earth);font-weight:600}
+.hero-btns{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px;
+  animation:up .7s ease .3s both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:14px 28px;border-radius:100px;
+  background:var(--earth);color:#fff;
+  font-size:14px;font-weight:600;
+  border:none;cursor:pointer;transition:all .2s;
+}
+.btn-primary:hover{background:var(--storm);transform:translateY(-2px);box-shadow:0 8px 24px rgba(28,18,8,.2)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:14px 26px;border-radius:100px;
+  background:transparent;color:var(--earth);
+  font-size:14px;font-weight:500;
+  border:1.5px solid var(--border);cursor:pointer;transition:all .2s;
+}
+.btn-outline:hover{border-color:var(--clay);background:var(--parchment)}
+.hero-trust{
+  display:flex;align-items:center;gap:14px;
+  animation:up .7s ease .4s both;
+}
+.avatars{display:flex}
+.av{
+  width:30px;height:30px;border-radius:50%;
+  border:2px solid var(--cream);
+  background:var(--forest);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;margin-left:-7px;
+}
+.av:first-child{margin-left:0}
+.trust-text{font-size:12px;color:var(--muted)}
+.trust-text strong{color:var(--earth)}
+
+/* Phone mockup */
+.hero-right{display:flex;justify-content:center;animation:fadein 1s ease .5s both}
+.phone-wrap{position:relative}
+.phone-glow{
+  position:absolute;inset:-40px;
+  background:radial-gradient(ellipse at 50% 60%,rgba(42,85,53,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.phone{
+  width:286px;background:var(--earth);
+  border-radius:44px;padding:13px;
+  box-shadow:0 40px 80px rgba(28,18,8,.28),inset 0 0 0 1px rgba(255,255,255,.05);
+}
+.p-notch{
+  width:96px;height:26px;
+  background:var(--earth);border-radius:0 0 18px 18px;
+  margin:0 auto;position:absolute;
+  top:13px;left:50%;transform:translateX(-50%);z-index:2;
+}
+.p-screen{
+  background:#0c1e12;border-radius:32px;
+  overflow:hidden;padding:46px 15px 18px;
+  min-height:520px;position:relative;
+}
+.p-head{
+  display:flex;align-items:center;gap:9px;
+  padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.06);
+  margin-bottom:14px;
+}
+.p-av{
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--leaf),var(--forest));
+  display:flex;align-items:center;justify-content:center;font-size:17px;
+}
+.p-name{font-size:12.5px;font-weight:600;color:#e8f0e9}
+.p-online{font-size:10px;color:#5cb85c;display:flex;align-items:center;gap:3px}
+.p-online::before{content:'';width:5px;height:5px;border-radius:50%;background:#5cb85c;display:inline-block}
+.bub{border-radius:15px;padding:9px 12px;font-size:11.5px;line-height:1.5;max-width:92%;margin-bottom:7px}
+.in{background:rgba(42,85,53,.32);color:#c0dcc2;border-bottom-left-radius:3px}
+.out{background:var(--forest);color:#fff;margin-left:auto;border-bottom-right-radius:3px}
+.alert-bub{
+  background:rgba(200,136,10,.14);border:1px solid rgba(200,136,10,.24);
+  border-radius:11px;padding:9px 11px;margin-bottom:7px;
+}
+.alert-head{font-size:9.5px;font-weight:700;color:#f0be45;text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.alert-body{font-size:11px;color:rgba(240,190,69,.82);line-height:1.5}
+.price-bub{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);
+  border-radius:11px;padding:9px 11px;margin-bottom:7px;
+}
+.price-mandi{font-size:9.5px;color:rgba(255,255,255,.4);margin-bottom:3px}
+.price-row{display:flex;justify-content:space-between;align-items:baseline}
+.price-now{font-size:19px;font-weight:700;color:#fff}
+.price-up{font-size:11px;color:#5cb85c}
+.typing{display:flex;gap:4px;padding:9px 12px;background:rgba(42,85,53,.32);border-radius:15px;border-bottom-left-radius:3px;width:fit-content;margin-top:4px}
+.typing span{width:5px;height:5px;border-radius:50%;background:#5cb85c;animation:bounce 1.2s ease infinite}
+.typing span:nth-child(2){animation-delay:.18s}
+.typing span:nth-child(3){animation-delay:.36s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.float-c{
+  position:absolute;background:#fff;
+  border-radius:13px;padding:11px 14px;
+  box-shadow:0 8px 28px rgba(0,0,0,.12);
+  animation:float 4s ease-in-out infinite;
+}
+.float-c.fl{left:-96px;top:22%;animation-delay:0s}
+.float-c.fr{right:-86px;bottom:26%;animation-delay:2s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.fc-icon{font-size:17px;margin-bottom:3px}
+.fc-val{font-size:15px;font-weight:700;color:var(--earth)}
+.fc-lbl{font-size:10px;color:var(--muted)}
+
+/* ── STATS ─────────────────────────────────────── */
+.stats{background:var(--earth);padding:46px 0}
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  max-width:1160px;margin:0 auto;padding:0 48px;
+}
+.stat{padding:0 36px;border-right:1px solid rgba(255,255,255,.07);text-align:center}
+.stat:last-child{border-right:none}
+.stat-val{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:700;color:var(--gold-light);
+  line-height:1;margin-bottom:5px;
+}
+.stat-lbl{font-size:11.5px;color:rgba(255,255,255,.4);line-height:1.5}
+
+/* ── PROBLEMS ───────────────────────────────────── */
+.problems{background:var(--white);padding:100px 0}
+.container{max-width:1160px;margin:0 auto;padding:0 48px}
+.eyebrow{
+  font-size:11px;font-weight:700;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold);
+  display:flex;align-items:center;gap:9px;margin-bottom:13px;
+}
+.eyebrow::before{content:'';width:22px;height:1px;background:var(--gold)}
+.section-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,4.2vw,56px);font-weight:700;
+  color:var(--earth);line-height:1.1;letter-spacing:-1px;
+  margin-bottom:16px;
+}
+.section-p{font-size:16px;color:var(--muted);line-height:1.78;max-width:500px}
+.p-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:56px}
+.p-card{
+  background:var(--cream);border-radius:18px;
+  padding:26px;border:1px solid var(--border);
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.p-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.p-card.gc::after{background:var(--leaf)}
+.p-card.gd::after{background:var(--gold)}
+.p-card.gb::after{background:var(--clay)}
+.p-card:hover{transform:translateY(-5px);box-shadow:0 18px 44px rgba(0,0,0,.08)}
+.p-card:hover::after{transform:scaleX(1)}
+.p-emoji{font-size:30px;margin-bottom:16px}
+.p-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:42px;font-weight:700;line-height:1;margin-bottom:5px;
+}
+.green{color:var(--forest)}.gold{color:var(--gold)}.brown{color:var(--clay)}
+.p-name{font-size:15px;font-weight:600;margin-bottom:7px}
+.p-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ── HOW IT WORKS ───────────────────────────────── */
+.how{background:var(--storm);padding:100px 0;position:relative;overflow:hidden}
+.how-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 55% 75% at 90% 50%,rgba(58,128,69,.12) 0%,transparent 65%);
+}
+.how .section-h{color:#fff}
+.how .section-p{color:rgba(255,255,255,.48)}
+.how .eyebrow{color:var(--gold-light)}
+.how .eyebrow::before{background:var(--gold-light)}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:60px;position:relative}
+.steps::before{
+  content:'';position:absolute;
+  top:43px;left:44px;right:44px;height:1px;
+  background:rgba(255,255,255,.07);
+}
+.step{text-align:center;padding:0 8px}
+.step-node{
+  width:86px;height:86px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.11);
+  background:rgba(255,255,255,.04);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 18px;font-size:28px;
+  position:relative;transition:all .3s;
+}
+.step:hover .step-node{background:rgba(255,255,255,.09);transform:translateY(-3px)}
+.step-n{
+  position:absolute;top:-4px;right:-4px;
+  width:21px;height:21px;border-radius:50%;
+  background:var(--gold);color:var(--earth);
+  font-size:10px;font-weight:600;font-family:'Outfit',sans-serif;
+  display:flex;align-items:center;justify-content:center;
+}
+.step-t{font-size:14px;font-weight:600;color:#fff;margin-bottom:7px}
+.step-d{font-size:12px;color:rgba(255,255,255,.43);line-height:1.6}
+
+/* ── FEATURES ───────────────────────────────────── */
+.features{background:var(--cream);padding:100px 0}
+.f-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:56px}
+.f-card{
+  background:var(--white);border-radius:18px;
+  padding:26px 28px;border:1px solid var(--border);
+  transition:all .25s;
+}
+.f-card:hover{transform:translateY(-4px);box-shadow:0 14px 36px rgba(0,0,0,.07)}
+.f-card.dark{background:var(--earth);border-color:transparent}
+.f-card.span2{grid-column:span 2}
+.f-ico{
+  width:48px;height:48px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:21px;margin-bottom:16px;
+}
+.fg{background:rgba(42,85,53,.1)}
+.fa{background:rgba(200,136,10,.1)}
+.fc{background:rgba(122,82,48,.1)}
+.fd{background:rgba(255,255,255,.08)}
+.f-name{font-size:15px;font-weight:600;color:var(--earth);margin-bottom:7px}
+.f-card.dark .f-name{color:#fff}
+.f-desc{font-size:13px;color:var(--muted);line-height:1.65}
+.f-card.dark .f-desc{color:rgba(255,255,255,.5)}
+.f-tag{
+  display:inline-block;margin-top:12px;
+  font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;
+  background:rgba(42,85,53,.1);color:var(--forest);
+}
+.f-card.dark .f-tag{background:rgba(255,255,255,.08);color:rgba(255,255,255,.45)}
+.lang-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.l-chip{
+  padding:4px 10px;border-radius:100px;
+  background:rgba(42,85,53,.1);font-size:12px;color:var(--forest);
+}
+.f-card.dark .l-chip{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5)}
+
+/* ── MODULES ─────────────────────────────────────── */
+.modules{background:var(--parchment);padding:100px 0}
+.m-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-top:48px}
+.m-card{
+  background:var(--white);border-radius:15px;
+  padding:18px;border:1px solid var(--border);
+  transition:all .2s;cursor:pointer;
+}
+.m-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.08);border-color:var(--mint)}
+.m-icon{font-size:22px;margin-bottom:9px}
+.m-title{font-size:13px;font-weight:600;color:var(--earth);margin-bottom:4px}
+.m-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.m-dot{
+  display:inline-flex;align-items:center;gap:4px;
+  margin-top:9px;font-size:9px;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--forest);
+}
+.m-dot::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--leaf)}
+.m-dot.soon::before{background:var(--sand)}
+.m-dot.soon{color:var(--clay)}
+
+/* ── PRICING ─────────────────────────────────────── */
+.pricing{background:var(--white);padding:100px 0}
+.price-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:18px;max-width:960px;margin-top:60px;
+}
+.pr-card{
+  border-radius:22px;padding:30px 26px;
+  border:1px solid var(--border);
+  background:var(--cream);
+  position:relative;transition:all .3s;
+}
+.pr-card:hover{transform:translateY(-4px)}
+.pr-card.feat{background:var(--earth);border-color:transparent;box-shadow:0 22px 56px rgba(28,18,8,.2)}
+.pr-badge{
+  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+  background:var(--gold);color:var(--earth);
+  font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:3px 15px;border-radius:100px;white-space:nowrap;
+}
+.pr-plan{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;color:var(--muted)}
+.pr-card.feat .pr-plan{color:var(--mint)}
+.pr-amount{
+  font-family:'Cormorant Garamond',serif;
+  font-size:50px;font-weight:700;line-height:1;margin-bottom:3px;color:var(--earth);
+}
+.pr-card.feat .pr-amount{color:#fff}
+.pr-period{font-size:12.5px;color:var(--muted);margin-bottom:22px}
+.pr-card.feat .pr-period{color:rgba(255,255,255,.38)}
+.pr-div{height:1px;background:var(--border);margin-bottom:20px}
+.pr-card.feat .pr-div{background:rgba(255,255,255,.07)}
+.pr-li{display:flex;align-items:flex-start;gap:9px;font-size:12.5px;margin-bottom:9px;line-height:1.4;color:var(--text)}
+.pr-card.feat .pr-li{color:rgba(255,255,255,.78)}
+.ck{color:var(--leaf);font-weight:700;flex-shrink:0}
+.pr-card.feat .ck{color:var(--gold-light)}
+.nx{color:rgba(0,0,0,.18);flex-shrink:0}
+.pr-btn{
+  display:block;text-align:center;margin-top:22px;
+  padding:12px 22px;border-radius:100px;
+  font-size:13px;font-weight:600;cursor:pointer;
+  transition:all .2s;border:none;font-family:'Outfit',sans-serif;
+}
+.pb-out{background:transparent;color:var(--earth);border:1.5px solid var(--border)}
+.pb-out:hover{border-color:var(--clay);background:var(--parchment)}
+.pb-gold{background:var(--gold);color:var(--earth)}
+.pb-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.pb-ghost{background:rgba(255,255,255,.07);color:#fff;border:1px solid rgba(255,255,255,.1)}
+.pb-ghost:hover{background:rgba(255,255,255,.13)}
+.price-note{text-align:center;margin-top:24px;font-size:13px;color:var(--muted)}
+
+/* ── MISSION ─────────────────────────────────────── */
+.mission{background:var(--parchment);padding:100px 0;position:relative;overflow:hidden}
+.mission::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%234a3219' fill-opacity='0.04'%3E%3Cpath d='M30 28v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM10 8V4H8v4H4v2h4v4h2V10h4V8h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.mission-in{
+  position:relative;display:grid;
+  grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.m-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(26px,3.2vw,44px);
+  line-height:1.3;color:var(--earth);
+  letter-spacing:-.5px;margin-bottom:14px;
+}
+.m-src{font-size:12px;color:var(--sand);letter-spacing:.1em}
+.mission-text{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:24px}
+.mission-text strong{color:var(--earth);font-weight:600}
+.m-pt{display:flex;gap:13px;align-items:flex-start;margin-bottom:14px}
+.m-pt-ico{
+  width:30px;height:30px;flex-shrink:0;border-radius:8px;
+  background:rgba(42,85,53,.1);
+  display:flex;align-items:center;justify-content:center;font-size:13px;
+}
+.m-pt-txt{font-size:13.5px;color:var(--muted);line-height:1.65}
+.m-pt-txt strong{color:var(--earth)}
+
+/* ── B2B ────────────────────────────────────────── */
+.b2b{background:var(--white);padding:100px 0}
+.b2b-in{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.b2b-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.b2b-card{
+  background:var(--cream);border-radius:14px;padding:18px;border:1px solid var(--border);
+}
+.b2b-ico{font-size:22px;margin-bottom:9px}
+.b2b-t{font-size:13px;font-weight:600;color:var(--earth);margin-bottom:4px}
+.b2b-d{font-size:11px;color:var(--muted);line-height:1.5}
+.b2b-r{font-size:11px;color:var(--forest);font-weight:600;margin-top:7px}
+
+/* ── CHANNELS ─────────────────────────────────── */
+.channels{background:var(--parchment);padding:80px 0}
+.ch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:44px}
+.ch-card{
+  background:var(--white);border-radius:15px;padding:22px 18px;
+  border:1px solid var(--border);text-align:center;transition:all .2s;
+}
+.ch-card:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.07)}
+.ch-ico{font-size:30px;margin-bottom:11px}
+.ch-name{font-size:14px;font-weight:600;margin-bottom:5px;color:var(--earth)}
+.ch-desc{font-size:12px;color:var(--muted);line-height:1.55}
+.ch-tag{
+  display:inline-block;margin-top:9px;
+  font-size:9.5px;font-weight:600;letter-spacing:.05em;
+  padding:3px 9px;border-radius:100px;
+}
+.live{background:rgba(42,85,53,.1);color:var(--forest)}
+.soon{background:rgba(200,136,10,.1);color:var(--gold)}
+
+/* ── CONTACT ─────────────────────────────────── */
+.contact{background:var(--earth);padding:100px 0;position:relative;overflow:hidden}
+.contact-bg{
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 55% 70% at 50% 50%,rgba(42,85,53,.14) 0%,transparent 70%);
+}
+.contact-in{
+  position:relative;display:grid;
+  grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+}
+.contact .section-h{color:#fff}
+.contact .eyebrow{color:var(--gold-light)}
+.contact .eyebrow::before{background:var(--gold-light)}
+.contact-sub{font-size:15px;color:rgba(255,255,255,.48);line-height:1.75;margin-bottom:30px}
+.ci-item{display:flex;gap:13px;align-items:center;margin-bottom:14px}
+.ci-ico{
+  width:34px;height:34px;border-radius:9px;
+  background:rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;
+}
+.ci-lbl{font-size:10.5px;color:rgba(255,255,255,.32);text-transform:uppercase;letter-spacing:.07em}
+.ci-val{font-size:13.5px;color:rgba(255,255,255,.72)}
+.form-wrap{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:18px;padding:30px;
+}
+.form-h{font-size:17px;font-weight:600;color:#fff;margin-bottom:3px}
+.form-sh{font-size:12.5px;color:rgba(255,255,255,.37);margin-bottom:20px}
+.fgroup{margin-bottom:14px}
+.flabel{display:block;font-size:11.5px;font-weight:500;color:rgba(255,255,255,.47);margin-bottom:5px;letter-spacing:.03em}
+.finput,.fselect,.ftextarea{
+  width:100%;padding:11px 15px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:9px;color:#fff;
+  font-family:'Outfit',sans-serif;font-size:13.5px;
+  outline:none;transition:border-color .2s;
+  -webkit-appearance:none;
+}
+.finput::placeholder,.ftextarea::placeholder{color:rgba(255,255,255,.22)}
+.finput:focus,.fselect:focus,.ftextarea:focus{border-color:rgba(200,136,10,.45)}
+.fselect option{background:var(--bark);color:#fff}
+.ftextarea{resize:vertical;min-height:90px}
+.f2col{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.fsub{
+  width:100%;padding:13px;
+  background:var(--gold);color:var(--earth);
+  border:none;border-radius:100px;
+  font-size:13.5px;font-weight:600;
+  font-family:'Outfit',sans-serif;
+  cursor:pointer;transition:all .2s;margin-top:7px;
+}
+.fsub:hover{background:var(--gold-light);transform:translateY(-1px)}
+.success-box{display:none;text-align:center;padding:24px}
+.success-box p:first-child{font-size:30px;margin-bottom:10px}
+.success-box .s-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px}
+.success-box .s-sub{font-size:12.5px;color:rgba(255,255,255,.45)}
+
+/* ── CTA BANNER ──────────────────────────────── */
+.cta{
+  background:linear-gradient(135deg,var(--storm) 0%,var(--forest) 100%);
+  padding:80px 0;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-bg{
+  position:absolute;inset:0;
+  background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.015) 0deg 1.5deg,transparent 1.5deg 30deg);
+}
+.cta-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,5vw,64px);font-weight:700;
+  color:#fff;letter-spacing:-1.5px;
+  margin-bottom:14px;position:relative;
+}
+.cta-title em{font-style:italic;color:var(--gold-light)}
+.cta-sub{font-size:17px;color:rgba(255,255,255,.52);max-width:450px;margin:0 auto 34px;line-height:1.72;position:relative}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-gold{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:14px 32px;border-radius:100px;
+  background:var(--gold);color:var(--earth);
+  font-size:14px;font-weight:700;
+  border:none;cursor:pointer;transition:all .2s;
+}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-glass{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:14px 28px;border-radius:100px;
+  background:rgba(255,255,255,.08);color:#fff;
+  border:1px solid rgba(255,255,255,.13);
+  font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;
+}
+.btn-glass:hover{background:rgba(255,255,255,.14)}
+
+/* ── FOOTER ───────────────────────────────────── */
+footer{background:var(--earth);padding:68px 0 34px;border-top:1px solid rgba(255,255,255,.04)}
+.ft-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:44px;margin-bottom:52px}
+.ft-brand .ft-logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:24px;font-weight:700;color:#fff;
+  display:block;margin-bottom:12px;
+}
+.ft-brand .ft-logo span{color:var(--gold-light)}
+.ft-brand p{font-size:12.5px;color:rgba(255,255,255,.32);line-height:1.75;max-width:250px;margin-bottom:18px}
+.ft-langs{display:flex;gap:5px;flex-wrap:wrap}
+.ft-lang{padding:3px 9px;border-radius:100px;background:rgba(255,255,255,.05);font-size:11px;color:rgba(255,255,255,.28)}
+.ft-col h4{font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:14px}
+.ft-col a{display:block;font-size:12.5px;color:rgba(255,255,255,.32);margin-bottom:8px;transition:color .2s}
+.ft-col a:hover{color:rgba(255,255,255,.65)}
+.ft-bot{
+  padding-top:26px;border-top:1px solid rgba(255,255,255,.06);
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;
+}
+.ft-bot p,.ft-bot a{font-size:11.5px;color:rgba(255,255,255,.22)}
+.ft-bot a:hover{color:rgba(255,255,255,.5)}
+.ft-vedic{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,.18)}
+
+/* ── ANIMATIONS ──────────────────────────────── */
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease,transform .6s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ──────────────────────────────── */
+@media(max-width:1060px){
+  .nav{padding:18px 28px}
+  .nav.scrolled{padding:12px 28px}
+  .nav-links{display:none}
+  .hero{padding:110px 28px 80px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .hero-right{display:none}
+  .stats-row{grid-template-columns:1fr 1fr;gap:18px}
+  .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);padding-bottom:16px}
+  .stat:nth-child(2n){border-right:none}
+  .container{padding:0 28px}
+  .p-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr 1fr;gap:24px}
+  .steps::before{display:none}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .f-card.span2{grid-column:span 1}
+  .m-grid{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:1fr;max-width:380px}
+  .b2b-in{grid-template-columns:1fr;gap:44px}
+  .mission-in{grid-template-columns:1fr;gap:44px}
+  .contact-in{grid-template-columns:1fr;gap:44px}
+  .ch-grid{grid-template-columns:1fr 1fr}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .hero{padding:100px 20px 70px}
+  .container{padding:0 20px}
+  .p-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .f-grid{grid-template-columns:1fr}
+  .m-grid{grid-template-columns:1fr 1fr}
+  .ch-grid{grid-template-columns:1fr 1fr}
+  .b2b-cards{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .f2col{grid-template-columns:1fr}
+  .cta-btns{flex-direction:column;align-items:center}
+  .stats-row{padding:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <a href="#home" class="logo">
+    <div class="logo-mark">🌧</div>
+    <div class="logo-text">
+      Parjanya
+      <small>पर्जन्य · AI Farm Intelligence</small>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#problems">Problems</a>
+    <a href="#features">Features</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#mission">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-cta">
+    <a href="#pricing" class="btn-nav-ghost">Sign in</a>
+    <a href="#contact" class="btn-nav">Get early access →</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="rain-wrap" id="rain"></div>
+  <div class="mandala"></div>
+
+  <div class="hero-grid">
+    <!-- LEFT -->
+    <div>
+      <div class="hero-eyebrow">
+        <i>⚡</i>
+        <!-- FARMER_COUNT → change "500+" to your actual number as you grow -->
+        India's first full-stack AI farm system
+      </div>
+      <h1>
+        <span class="skt">पर्जन्यः सर्वभूतानां जनिता</span>
+        The rain that<br>
+        <em>feeds India.</em>
+      </h1>
+      <p class="hero-sub">
+        <strong>Parjanya</strong> — named from the Rigveda's god of rain — is India's AI system for farmers. Detect diseases, predict weather, know when to sell, watch your storage. <strong>Automatically. In your language. On any phone.</strong>
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Start for free — join today →</a>
+        <a href="#how" class="btn-outline">See how it works</a>
+      </div>
+      <div class="hero-trust">
+        <div class="avatars">
+          <div class="av">👨‍🌾</div>
+          <div class="av">👩‍🌾</div>
+          <div class="av">👨‍🌾</div>
+          <div class="av">👩‍🌾</div>
+        </div>
+        <!-- FARMER_COUNT below — update as you grow -->
+        <p class="trust-text"><strong>500+ farmers</strong> in early access · Bengaluru, Maharashtra, AP</p>
+      </div>
+    </div>
+
+    <!-- RIGHT — phone mockup -->
+    <div class="hero-right">
+      <div class="phone-wrap">
+        <div class="phone-glow"></div>
+        <div class="phone">
+          <div class="p-notch"></div>
+          <div class="p-screen">
+            <div class="p-head">
+              <div class="p-av">🌾</div>
+              <div>
+                <div class="p-name">Parjanya Assistant</div>
+                <div class="p-online">Active now</div>
+              </div>
+            </div>
+            <div class="bub out">Meri tamatar ki fasal mein gadbad lag rahi hai 📸</div>
+            <div class="bub in">🔬 <strong>Tomato Late Blight</strong> — 91% confidence<br><br>Mancozeb 75 WP (2g/L) spray karein. 24 ghante mein. Overhead irrigation band karein.</div>
+            <div class="alert-bub">
+              <div class="alert-head">⚠ Weather Alert — 38 hours ahead</div>
+              <div class="alert-body">Shukravaar bhaari baarish. Pyaz Guruvar tak kaatein — warna 35% nuksan.</div>
+            </div>
+            <div class="price-bub">
+              <div class="price-mandi">🧅 Nashik Mandi — Live</div>
+              <div class="price-row">
+                <span class="price-now">₹1,240/q</span>
+                <span class="price-up">↑ ₹1,380 Fri forecast</span>
+              </div>
+            </div>
+            <div class="bub in">📊 <strong>2 din ruko.</strong> Friday price better rahegi.</div>
+            <div class="typing"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="float-c fl">
+          <div class="fc-icon">🌡</div>
+          <div class="fc-val">95%</div>
+          <div class="fc-lbl">Disease accuracy</div>
+        </div>
+        <div class="float-c fr">
+          <div class="fc-icon">💰</div>
+          <div class="fc-val">₹22K+</div>
+          <div class="fc-lbl">Saved per farmer/yr</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ STATS ═══════════════ -->
+<div class="stats">
+  <div class="stats-row">
+    <div class="stat reveal"><div class="stat-val">₹92,650 Cr</div><div class="stat-lbl">Annual losses<br>Parjanya prevents</div></div>
+    <div class="stat reveal"><div class="stat-val">95%</div><div class="stat-lbl">Crop disease detection<br>accuracy on-device</div></div>
+    <div class="stat reveal"><div class="stat-val">140M</div><div class="stat-lbl">Smallholder farming<br>families in India</div></div>
+    <div class="stat reveal"><div class="stat-val">8 langs</div><div class="stat-lbl">Voice advisory — Hindi,<br>Telugu, Marathi + 5 more</div></div>
+  </div>
+</div>
+
+<!-- ═══════════════ PROBLEMS ═══════════════ -->
+<section id="problems" class="problems">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">The real cost</div>
+      <h2 class="section-h">What guesswork is costing<br>Indian farmers every season</h2>
+      <p class="section-p">Each loss below is preventable. Parjanya addresses every single one — automatically, without a human expert needed.</p>
+    </div>
+    <div class="p-grid">
+      <div class="p-card gc reveal"><div class="p-emoji">🦠</div><div class="p-num green">30–33%</div><div class="p-name">Yield lost to crop diseases</div><div class="p-desc">Farmers detect disease 3–7 days after spread. By then 50% of the field is infected. Parjanya catches it the same day.</div></div>
+      <div class="p-card gd reveal"><div class="p-emoji">💧</div><div class="p-num gold">60%</div><div class="p-name">Water wasted in irrigation</div><div class="p-desc">Fixed schedules ignore what crops need. Smart sensors + AI cut water use 25–35% with zero yield loss.</div></div>
+      <div class="p-card gb reveal"><div class="p-emoji">📦</div><div class="p-num brown">₹92,650 Cr</div><div class="p-name">Post-harvest losses every year</div><div class="p-desc">Vegetables, grains, fruits spoiling in storage due to zero monitoring. A ₹800 sensor kit prevents most of this.</div></div>
+      <div class="p-card gd reveal"><div class="p-emoji">📉</div><div class="p-num gold">20–35%</div><div class="p-name">Income lost to middlemen</div><div class="p-desc">Without mandi data, farmers sell blind — always at the worst time. Parjanya forecasts prices 14 days out.</div></div>
+      <div class="p-card gc reveal"><div class="p-emoji">🌧</div><div class="p-num green">1.4%</div><div class="p-name">Agriculture growth in 2023–24</div><div class="p-desc">One El Niño erased years of growth. Hyperlocal alerts 48 hours ahead give farmers time to act, not react.</div></div>
+      <div class="p-card gb reveal"><div class="p-emoji">🧪</div><div class="p-num brown">0%</div><div class="p-name">Farmers who have done a soil test</div><div class="p-desc">Most use the same fertilizer their fathers used. AI soil recommendations cut input costs 15–20%.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section id="how" class="how">
+  <div class="how-bg"></div>
+  <div class="container" style="position:relative">
+    <div class="reveal">
+      <div class="eyebrow">Simple process</div>
+      <h2 class="section-h">How Parjanya works</h2>
+      <p class="section-p" style="max-width:460px">No training. No complicated setup. Works on any Android — even completely offline in the field.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="step-node">📲<div class="step-n">1</div></div><div class="step-t">Register in 2 minutes</div><div class="step-d">Enter phone number, location, and crop name. Your farm profile is built instantly.</div></div>
+      <div class="step reveal"><div class="step-node">📸<div class="step-n">2</div></div><div class="step-t">Photo or voice — your choice</div><div class="step-d">Photograph a sick leaf. Or speak your question in Hindi, Telugu, Marathi, or 5 more languages.</div></div>
+      <div class="step reveal"><div class="step-node">🤖<div class="step-n">3</div></div><div class="step-t">AI analyses in seconds</div><div class="step-d">Disease, weather risk, price forecast — computed instantly on your phone. No waiting for an expert.</div></div>
+      <div class="step reveal"><div class="step-node">🔔<div class="step-n">4</div></div><div class="step-t">Alerts come to you</div><div class="step-d">You don't check anything. Weather risks, price spikes, storage warnings arrive automatically.</div></div>
+      <div class="step reveal"><div class="step-node">✅<div class="step-n">5</div></div><div class="step-t">One clear action</div><div class="step-d">"Spray this. Sell Thursday. Harvest tomorrow." Always one specific action. Never vague advice.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FEATURES ═══════════════ -->
+<section id="features" class="features">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">What's inside</div>
+      <h2 class="section-h">Everything a farmer needs<br>to protect their income</h2>
+      <p class="section-p">Seven AI modules. One platform. Each one saves money. Together, they can transform what a farmer earns every season.</p>
+    </div>
+    <div class="f-grid">
+      <div class="f-card reveal"><div class="f-ico fg">🔬</div><div class="f-name">Crop Disease Detection</div><div class="f-desc">Point your phone at any leaf. AI trained on 54,000+ disease images identifies infections with 95% accuracy. Works completely offline — no internet needed in the field.</div><div class="f-tag">Offline · 50+ diseases · Instant</div></div>
+      <div class="f-card reveal"><div class="f-ico fa">🌦</div><div class="f-name">Hyperlocal Weather Alerts</div><div class="f-desc">1 km-grid forecasting. Automated push alerts 48 hours before risk events — with a specific action: "harvest today" or "delay irrigation until Saturday."</div><div class="f-tag">48hr advance · Auto alerts · Crop-specific</div></div>
+      <div class="f-card reveal"><div class="f-ico fc">💧</div><div class="f-name">Smart Irrigation Scheduler</div><div class="f-desc">Soil moisture sensor (₹800 total kit) + weather + crop model. System decides when to irrigate. You save 25–35% water without losing any yield.</div><div class="f-tag">IoT sensors · Auto scheduling · 30% less water</div></div>
+      <div class="f-card reveal"><div class="f-ico fa">📈</div><div class="f-name">Mandi Price Intelligence</div><div class="f-desc">Live prices from 2,800+ mandis across India. AI forecasts 14 days ahead. Tells you the best market, best day, and best price — stop selling blind.</div><div class="f-tag">2,800+ mandis · 14-day forecast · Live</div></div>
+      <div class="f-card dark span2 reveal">
+        <div class="f-ico fd">🗣</div>
+        <div class="f-name">Voice Advisory in 8 Indian Languages</div>
+        <div class="f-desc">Speak your question in your mother tongue. Parjanya transcribes it, processes it, and speaks the answer back in under 10 seconds. Zero literacy required. Works for every farmer in India.</div>
+        <div class="lang-chips">
+          <span class="l-chip">हिन्दी</span><span class="l-chip">తెలుగు</span><span class="l-chip">मराठी</span>
+          <span class="l-chip">ಕನ್ನಡ</span><span class="l-chip">தமிழ்</span><span class="l-chip">বাংলা</span>
+          <span class="l-chip">ગુજરાતી</span><span class="l-chip">ਪੰਜਾਬੀ</span>
+        </div>
+      </div>
+      <div class="f-card reveal"><div class="f-ico fg">🌱</div><div class="f-name">Soil & Fertilizer Advisor</div><div class="f-desc">AI-powered NPK recommendations based on your soil, crop, and growth stage. Reduces fertilizer costs 15–20%. Alerts when pH drifts out of the safe range.</div><div class="f-tag">NPK precision · 15–20% cost saving</div></div>
+      <div class="f-card reveal"><div class="f-ico fc">📦</div><div class="f-name">Smart Storage Monitor</div><div class="f-desc">₹800 sensor kit monitors temperature, humidity, and gas levels. AI gives 48-hour spoilage warning — time to sell before losses happen. Grain, vegetables, fruits.</div><div class="f-tag">₹800 hardware · 48hr warning · Auto alert</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ 12 MODULES ═══════════════ -->
+<section class="modules">
+  <div class="container">
+    <div class="reveal">
+      <div class="eyebrow">Complete AI system</div>
+      <h2 class="section-h">12 fully autonomous modules</h2>
+      <p class="section-p">Every module runs without a human expert in the loop. The farmer sees only one thing — clear advice, one action, zero guesswork.</p>
+    </div>
+    <div class="m-grid">
+      <div class="m-card reveal"><div class="m-icon">🔬</div><div class="m-title">Crop disease detection</div><div class="m-desc">Camera → AI → diagnosis in seconds. Offline. 50+ diseases across 10 crops.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">🌦</div><div class="m-title">Weather risk alerts</div><div class="m-desc">Auto 48hr alerts before rain, frost, or heatwave. Zero farmer action needed.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">💧</div><div class="m-title">Smart irrigation</div><div class="m-desc">Sensor + weather + AI controls irrigation relay. 30% water saved.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">📦</div><div class="m-title">Storage spoilage monitor</div><div class="m-desc">IoT sensors + anomaly detection. 48hr warning before spoilage occurs.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">📈</div><div class="m-title">Mandi price forecast</div><div class="m-desc">LSTM model. 14-day price prediction across 2,800 markets.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">🌱</div><div class="m-title">Fertilizer advisor</div><div class="m-desc">Soil type + crop stage = precise NPK recommendation for your farm.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">🐛</div><div class="m-title">Pest surveillance</div><div class="m-desc">Camera + YOLO detection. Alerts before visible crop damage appears.</div><div class="m-dot">Building</div></div>
+      <div class="m-card reveal"><div class="m-icon">🌾</div><div class="m-title">Harvest timing predictor</div><div class="m-desc">Computer vision + LSTM model. Optimal harvest window within 3 days.</div><div class="m-dot">Building</div></div>
+      <div class="m-card reveal"><div class="m-icon">🗣</div><div class="m-title">Voice advisory bot</div><div class="m-desc">Speak in Hindi, get answer in 10 seconds. 8 Indian languages.</div><div class="m-dot">Live</div></div>
+      <div class="m-card reveal"><div class="m-icon">🗺</div><div class="m-title">Crop recommendation</div><div class="m-desc">Soil + season + market demand = highest-ROI crop for next season.</div><div class="m-dot">Building</div></div>
+      <div class="m-card reveal"><div class="m-icon">📊</div><div class="m-title">Yield prediction</div><div class="m-desc">Season-long simulation. 85%+ accuracy on final yield forecast.</div><div class="m-dot">Building</div></div>
+      <div class="m-card reveal"><div class="m-icon">🤝</div><div class="m-title">Direct market matching</div><div class="m-desc">AI finds buyers, compares prices, connects farmer directly. No middlemen.</div><div class="m-dot soon">Coming soon</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRICING ═══════════════ -->
+<section id="pricing" class="pricing">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="eyebrow" style="justify-content:center">Simple pricing</div>
+      <h2 class="section-h">Start free. Upgrade when<br>you see the results.</h2>
+      <p class="section-p" style="margin:0 auto;text-align:center">No lock-in. No annual contracts. Pay per crop season — the way a farmer thinks.</p>
+    </div>
+    <div class="price-grid" style="margin:0 auto">
+      <!-- PRICE_FREE -->
+      <div class="pr-card reveal">
+        <div class="pr-plan">Parjanya Free</div>
+        <div class="pr-amount">₹0</div>
+        <div class="pr-period">Forever free · Always</div>
+        <div class="pr-div"></div>
+        <div class="pr-li"><span class="ck">✓</span>Disease scan — 5 per month</div>
+        <div class="pr-li"><span class="ck">✓</span>Weekly weather summary</div>
+        <div class="pr-li"><span class="ck">✓</span>Voice advisory bot</div>
+        <div class="pr-li"><span class="ck">✓</span>Basic mandi prices</div>
+        <div class="pr-li"><span class="ck">✓</span>Telegram bot access</div>
+        <div class="pr-li"><span class="nx">–</span>Real-time alerts</div>
+        <div class="pr-li"><span class="nx">–</span>14-day price forecast</div>
+        <div class="pr-li"><span class="nx">–</span>IoT sensor kit</div>
+        <a href="#contact" class="pr-btn pb-out">Get started free</a>
+      </div>
+      <!-- PRICE_PLUS -->
+      <div class="pr-card feat reveal">
+        <div class="pr-badge">Most popular</div>
+        <div class="pr-plan">Parjanya Plus</div>
+        <div class="pr-amount">₹199</div>
+        <div class="pr-period">per crop season (~4 months)</div>
+        <div class="pr-div"></div>
+        <div class="pr-li"><span class="ck">✓</span>Unlimited disease scans</div>
+        <div class="pr-li"><span class="ck">✓</span>Real-time weather alerts</div>
+        <div class="pr-li"><span class="ck">✓</span>Mandi price 14-day forecast</div>
+        <div class="pr-li"><span class="ck">✓</span>Harvest timing alerts</div>
+        <div class="pr-li"><span class="ck">✓</span>Fertilizer + soil advisor</div>
+        <div class="pr-li"><span class="ck">✓</span>Unlimited voice advisory</div>
+        <div class="pr-li"><span class="ck">✓</span>SMS + push notifications</div>
+        <div class="pr-li"><span class="nx">–</span>IoT sensor hardware</div>
+        <a href="#contact" class="pr-btn pb-gold">Start this season →</a>
+      </div>
+      <!-- PRICE_AUTO -->
+      <div class="pr-card reveal">
+        <div class="pr-plan">Parjanya Auto</div>
+        <div class="pr-amount">₹499</div>
+        <div class="pr-period">per season + ₹800 sensor kit (once)</div>
+        <div class="pr-div"></div>
+        <div class="pr-li"><span class="ck">✓</span>Everything in Plus</div>
+        <div class="pr-li"><span class="ck">✓</span>Soil moisture IoT sensor</div>
+        <div class="pr-li"><span class="ck">✓</span>Auto irrigation scheduling</div>
+        <div class="pr-li"><span class="ck">✓</span>Storage spoilage monitor</div>
+        <div class="pr-li"><span class="ck">✓</span>24/7 crop surveillance</div>
+        <div class="pr-li"><span class="ck">✓</span>Yield income prediction</div>
+        <div class="pr-li"><span class="ck">✓</span>Priority support</div>
+        <a href="#contact" class="pr-btn pb-out">Get full automation</a>
+      </div>
+    </div>
+    <p class="price-note reveal">₹199/season = ₹1.63/day. One saved spray decision pays for the entire year.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ MISSION ═══════════════ -->
+<section id="mission" class="mission">
+  <div class="container">
+    <div class="mission-in">
+      <div class="reveal">
+        <div class="eyebrow">Why Parjanya</div>
+        <div class="m-quote">"Parjanyāt annasambhavaḥ"</div>
+        <div class="m-src">— Bhagavad Gita 3.14 · From rain comes food.</div>
+      </div>
+      <div class="reveal">
+        <p class="mission-text">Indian farming is not failing because of lack of land, labour, or effort. It is failing because <strong>critical decisions are made without data.</strong></p>
+        <p class="mission-text">When to irrigate. When to spray. When to harvest. When to sell. These four decisions, made correctly, can <strong>transform a farmer's income by 20–35%</strong> — without changing a single seed.</p>
+        <div class="m-pt"><div class="m-pt-ico">🏡</div><p class="m-pt-txt"><strong>Built from village conversations,</strong> not boardrooms. Every feature validated by speaking directly with farmers in Maharashtra, AP, and Karnataka.</p></div>
+        <div class="m-pt"><div class="m-pt-ico">📵</div><p class="m-pt-txt"><strong>Offline-first by design.</strong> 42% of rural India has unreliable internet. Parjanya works in the field, on any Android, without a data connection.</p></div>
+        <div class="m-pt"><div class="m-pt-ico">🗣</div><p class="m-pt-txt"><strong>Voice-native, literacy-independent.</strong> 250 million farmers have low reading ability. Parjanya speaks their language — literally.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ B2B ═══════════════ -->
+<section id="enterprise" class="b2b">
+  <div class="container">
+    <div class="b2b-in">
+      <div class="reveal">
+        <div class="eyebrow">For enterprises</div>
+        <h2 class="section-h">Data that changes how agriculture finance works</h2>
+        <p class="section-p" style="max-width:100%;margin-bottom:26px">As farmers use Parjanya, we build India's most detailed agricultural intelligence dataset — crop health maps, soil trends, yield forecasts by district — available for enterprise licensing.</p>
+        <a href="#contact" class="btn-primary">Talk to enterprise team →</a>
+      </div>
+      <div class="b2b-cards reveal">
+        <div class="b2b-card"><div class="b2b-ico">🏦</div><div class="b2b-t">Agri Banks & NBFC</div><div class="b2b-d">AI crop credit scoring. Price and yield forecasts for loan risk assessment.</div><div class="b2b-r">₹2–5L/month per client</div></div>
+        <div class="b2b-card"><div class="b2b-ico">🛡</div><div class="b2b-t">Crop Insurance</div><div class="b2b-d">Disease outbreak maps and weather risk scores for premium calculation.</div><div class="b2b-r">₹2–4L/month per client</div></div>
+        <div class="b2b-card"><div class="b2b-ico">🧪</div><div class="b2b-t">Input Companies</div><div class="b2b-d">Disease alert → product recommendation. Reach farmers at the exact moment they need you.</div><div class="b2b-r">Commission + data license</div></div>
+        <div class="b2b-card"><div class="b2b-ico">🏛</div><div class="b2b-t">Government & ICAR</div><div class="b2b-d">State-level disease surveillance and crop yield predictions for food security.</div><div class="b2b-r">₹10–50L pilot contracts</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CHANNELS ═══════════════ -->
+<section class="channels">
+  <div class="container">
+    <div style="text-align:center" class="reveal">
+      <div class="eyebrow" style="justify-content:center">No lock-in</div>
+      <h2 class="section-h">Reach farmers on<br>every channel</h2>
+      <p class="section-p" style="max-width:460px;margin:0 auto">Parjanya owns its own platform. We don't depend on any single app's approval.</p>
+    </div>
+    <div class="ch-grid">
+      <div class="ch-card reveal"><div class="ch-ico">📱</div><div class="ch-name">Android App</div><div class="ch-desc">Offline disease detection, push notifications, full sensor dashboard.</div><div class="ch-tag live">Live · No approval</div></div>
+      <div class="ch-card reveal"><div class="ch-ico">✈️</div><div class="ch-name">Telegram Bot</div><div class="ch-desc">Voice + text advisory. Zero approval. Works for 200M+ Indian users.</div><div class="ch-tag live">Live · Zero approval</div></div>
+      <div class="ch-card reveal"><div class="ch-ico">📨</div><div class="ch-name">SMS Alerts</div><div class="ch-desc">Weather and price alerts via SMS. Reaches every ₹800 feature phone.</div><div class="ch-tag live">Live · Approved</div></div>
+      <div class="ch-card reveal"><div class="ch-ico">💬</div><div class="ch-name">WhatsApp</div><div class="ch-desc">Full voice advisory via WhatsApp Business API. Meta approval pending.</div><div class="ch-tag soon">Coming soon</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT FORM ═══════════════ -->
+<section id="contact" class="contact">
+  <div class="contact-bg"></div>
+  <div class="container">
+    <div class="contact-in">
+
+      <!-- LEFT — contact info -->
+      <div class="reveal">
+        <div class="eyebrow">Get early access</div>
+        <h2 class="section-h">Join Parjanya.<br>Your crop has been waiting.</h2>
+        <p class="contact-sub">We're onboarding farmers and enterprise partners in select regions. Register below and our team contacts you within 24 hours.</p>
+        <!-- CONTACT_EMAIL — change ak.founderr@gmail.com to your real email -->
+        <div class="ci-item"><div class="ci-ico">✉️</div><div><div class="ci-lbl">Email</div><div class="ci-val">ak.founderr@gmail.com</div></div></div>
+        <!-- PHONE_NUMBER — change +91 97412 76963 to your real number -->
+        <div class="ci-item"><div class="ci-ico">📞</div><div><div class="ci-lbl">Phone / WhatsApp</div><div class="ci-val">+91 97412 76963</div></div></div>
+        <!-- YOUR_LOCATION — change to your city -->
+        <div class="ci-item"><div class="ci-ico">📍</div><div><div class="ci-lbl">Location</div><div class="ci-val">Dharwad, Karnataka, India</div></div></div>
+        <!-- SOCIAL_LINKS — add your Telegram/Twitter/LinkedIn links below -->
+        <div class="ci-item"><div class="ci-ico">✈️</div><div><div class="ci-lbl">Telegram</div><div class="ci-val">@ParjanyaAI</div></div></div>
+      </div>
+
+      <!-- RIGHT — registration form -->
+      <!--
+        HOW THIS FORM WORKS:
+        When you put this site on Netlify, Netlify automatically captures
+        all form submissions and emails them to you — completely FREE.
+        Steps:
+        1. Deploy this file on netlify.com (drag and drop)
+        2. Go to Netlify → Site settings → Forms
+        3. Set your email address to receive submissions
+        That's it. No code changes needed. No external accounts needed.
+      -->
+      <div class="form-wrap reveal">
+        <div class="form-h">Register for early access</div>
+        <div class="form-sh">Farmers and enterprise partners welcome.</div>
+
+        <form id="regForm" name="parjanya-registration" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleSubmit(event)">
+          <!-- Hidden field required by Netlify -->
+          <input type="hidden" name="form-name" value="parjanya-registration">
+          <!-- Honeypot spam trap — invisible to humans -->
+          <div style="display:none"><input name="bot-field"></div>
+
+          <div class="f2col">
+            <div class="fgroup">
+              <label class="flabel">Full name *</label>
+              <input name="name" type="text" class="finput" placeholder="Ramesh Kumar" required>
+            </div>
+            <div class="fgroup">
+              <label class="flabel">Phone number *</label>
+              <input name="phone" type="tel" class="finput" placeholder="+91 98765 43210" required>
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Email address</label>
+            <input name="email" type="email" class="finput" placeholder="you@example.com">
+          </div>
+          <div class="fgroup">
+            <label class="flabel">I am a *</label>
+            <select name="role" class="fselect finput" required>
+              <option value="">Select your role</option>
+              <option>Farmer — looking for farm AI tools</option>
+              <option>FPO / Farmer cooperative</option>
+              <option>Enterprise — fertilizer / insurance / bank</option>
+              <option>Government / research organisation</option>
+              <option>Investor</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="f2col">
+            <div class="fgroup">
+              <label class="flabel">State / Region</label>
+              <input name="state" type="text" class="finput" placeholder="Maharashtra, Karnataka...">
+            </div>
+            <div class="fgroup">
+              <label class="flabel">Primary crop (if farmer)</label>
+              <input name="crop" type="text" class="finput" placeholder="Tomato, Cotton, Rice...">
+            </div>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Message or question</label>
+            <textarea name="message" class="ftextarea finput" placeholder="Tell us about your farm, biggest challenge, or your enquiry..."></textarea>
+          </div>
+          <button type="submit" class="fsub">Submit registration →</button>
+        </form>
+
+        <div class="success-box" id="successBox">
+          <p>🌧</p>
+          <div class="s-title">Registration received!</div>
+          <div class="s-sub">We will reach out within 24 hours. Parjanya is coming to your farm.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA BANNER ═══════════════ -->
+<section class="cta">
+  <div class="cta-bg"></div>
+  <div class="container" style="position:relative;text-align:center">
+    <div class="eyebrow" style="justify-content:center;color:var(--gold-light);margin-bottom:16px">
+      <span style="background:var(--gold-light);height:1px;width:22px;display:inline-block"></span>
+      पर्जन्य — The rain god is watching over your farm
+    </div>
+    <div class="cta-title">Your next harvest will be<br><em>your best one.</em></div>
+    <p class="cta-sub">Start free today. Take a photo of your first crop. See what Parjanya's AI finds that your eyes missed.</p>
+    <div class="cta-btns">
+      <a href="#contact" class="btn-gold">Start for free — register now →</a>
+      <!-- PHONE_NUMBER — update this phone link -->
+      <a href="tel:+919741276963" class="btn-glass">📞 Call us today</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="ft-logo">Parjanya <span>AI</span></span>
+        <p>India's AI-powered farm intelligence. Built from village conversations. Named from the Rigveda. Built for 140 million farming families.</p>
+        <div class="ft-langs">
+          <span class="ft-lang">हिन्दी</span>
+          <span class="ft-lang">తెలుగు</span>
+          <span class="ft-lang">मराठी</span>
+          <span class="ft-lang">ಕನ್ನಡ</span>
+          <span class="ft-lang">தமிழ்</span>
+          <span class="ft-lang">বাংলা</span>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Product</h4>
+        <a href="#features">Disease Detection</a>
+        <a href="#features">Weather Alerts</a>
+        <a href="#features">Price Intelligence</a>
+        <a href="#features">Smart Irrigation</a>
+        <a href="#features">Storage Monitor</a>
+        <a href="#features">Voice Advisory</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="#mission">About Parjanya</a>
+        <a href="#mission">Our mission</a>
+        <a href="#enterprise">Enterprise</a>
+        <a href="#contact">Careers</a>
+        <a href="#contact">Press</a>
+        <a href="#contact">Village research</a>
+      </div>
+      <div class="ft-col">
+        <h4>Connect</h4>
+        <!-- CONTACT_EMAIL + PHONE_NUMBER + SOCIAL_LINKS — update these -->
+        <a href="mailto:ak.founderr@gmail.com">ak.founderr@gmail.com</a>
+        <a href="tel:+919741276963">+91 97412 76963</a>
+        <a href="#">Telegram Community</a>
+        <a href="#">Twitter / X</a>
+        <a href="#">LinkedIn</a>
+        <a href="#contact">Farmer helpline</a>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <p>© 2026 Parjanya AI. Built with love for India's farming families. Dharwad, Karnataka, India.</p>
+      <span class="ft-vedic">"पर्जन्यः सर्वभूतानां जनिता"</span>
+      <p><a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ── Rain animation ── */
+(function(){
+  const c=document.getElementById('rain');
+  for(let i=0;i<36;i++){
+    const d=document.createElement('div');
+    d.className='raindrop';
+    const l=Math.random()*100,h=35+Math.random()*75,dur=2.2+Math.random()*4,del=Math.random()*6;
+    d.style.cssText=`left:${l}%;height:${h}px;animation-duration:${dur}s;animation-delay:-${del}s;top:0`;
+    c.appendChild(d);
+  }
+})();
+
+/* ── Nav scroll ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',window.scrollY>36);
+},{passive:true});
+
+/* ── Reveal on scroll ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting) setTimeout(()=>e.target.classList.add('on'),i*55);
+  });
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
+  });
+});
+
+/* ── Form handler ──
+   When running OFFLINE (local file): shows success message immediately
+   When running ON NETLIFY: Netlify intercepts the POST and captures the data,
+   then the page reloads — the success message shows on reload via URL param.
+── */
+function handleSubmit(e){
+  const form=e.target;
+  const required=form.querySelectorAll('[required]');
+  let ok=true;
+  required.forEach(f=>{if(!f.value.trim())ok=false;});
+  if(!ok){alert('Please fill in all required fields (marked with *).'); e.preventDefault(); return;}
+
+  // If running locally (offline), just show success without submitting
+  if(window.location.protocol==='file:'){
+    e.preventDefault();
+    form.style.display='none';
+    document.getElementById('successBox').style.display='block';
+    return;
+  }
+  // On Netlify: let the form submit normally (Netlify handles it)
+  // Show success optimistically after a short delay
+  setTimeout(()=>{
+    form.style.display='none';
+    document.get
