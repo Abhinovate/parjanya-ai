@@ -1,0 +1,25 @@
+{
+  "name": "parjanya-ai",
+  "version": "1.0.0",
+  "description": "Parjanya AI — Secure Build Pipeline",
+  "scripts": {
+    "build": "node build/build.js",
+    "dev": "netlify dev",
+    "prebuild": "echo 'Building Parjanya AI...'",
+    "postbuild": "echo 'Build complete. Upload /dist to GitHub.'"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.9"
+  },
+  "devDependencies": {
+    "terser": "^5.26.0",
+    "html-minifier-terser": "^7.2.0",
+    "netlify-cli": "^17.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "author": "Parjanya AI <ak.founderr@gmail.com>"
+}
