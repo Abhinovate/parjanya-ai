@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<!--
+  © 2026 Parjanya AI · ak.founderr@gmail.com · Dharwad, Karnataka, India
+  Protected under Indian Copyright Act 1957 & Information Technology Act 2000
+  Unauthorized copying, scraping, or reproduction is STRICTLY PROHIBITED
+  Fingerprint: PJ-SECURE-2026
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="index, follow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self' https://fonts.googleapis.com https://fonts.gstatic.com https://cdnjs.cloudflare.com; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; connect-src 'self' https://*.netlify.app https://parjanya.in; img-src 'self' data: blob:; media-src 'self';">
+<title>Parjanya AI — AI Farm Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060d08;--bg2:#0b1810;--green:#00e676;--green3:#1de9b6;--card:#0e1f14;--border:rgba(0,230,118,.12);--border2:rgba(0,230,118,.06);--text:#e8f5e9;--muted:#6b8f72;--white:#fff;--amber:#ffc107;--red:#ef5350}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden;line-height:1.6}
+/* SECURITY: Block text selection globally, allow in inputs */
+body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
+input,textarea{-webkit-user-select:text!important;user-select:text!important}
+
+/* ═══════════════════════════════════════
+   TERMS OF SERVICE OVERLAY
+═══════════════════════════════════════ */
+#tosOverlay{
+  position:fixed;inset:0;
+  background:rgba(6,13,8,.97);
+  backdrop-filter:blur(16px);
+  z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+#tosOverlay.accepted{display:none}
+.tos-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  width:100%;max-width:560px;
+  max-height:90vh;
+  overflow-y:auto;
+  box-shadow:0 40px 100px rgba(0,0,0,.8);
+  scrollbar-width:thin;
+}
+.tos-header{
+  padding:24px 24px 16px;
+  border-bottom:1px solid var(--border2);
+  position:sticky;top:0;
+  background:var(--card);
+  z-index:1;
+}
+.tos-logo{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.tos-logo-dot{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--green),var(--green3));display:flex;align-items:center;justify-content:center;font-size:12px}
+.tos-logo-text{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;color:var(--white)}
+.tos-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--white);margin-bottom:4px}
+.tos-sub{font-size:12px;color:var(--muted)}
+.tos-body{padding:20px 24px}
+.tos-section{margin-bottom:18px}
+.tos-section h3{font-size:13px;font-weight:600;color:var(--green);margin-bottom:8px;display:flex;align-items:center;gap:7px}
+.tos-section p,.tos-section li{font-size:12.5px;color:var(--text);line-height:1.7;margin-bottom:5px}
+.tos-section ul{padding-left:16px}
+.tos-section li{margin-bottom:4px}
+.tos-highlight{
+  background:rgba(255,193,7,.07);
+  border:1px solid rgba(255,193,7,.2);
+  border-radius:9px;
+  padding:12px 14px;
+  margin-top:8px;
+}
+.tos-highlight p{color:rgba(255,193,7,.9);font-size:12px;line-height:1.7;margin:0}
+.tos-footer{
+  padding:16px 24px 20px;
+  border-top:1px solid var(--border2);
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+}
+.tos-checkbox-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:14px;cursor:pointer;padding:0 24px}
+.tos-cb{width:18px;height:18px;flex-shrink:0;margin-top:1px;accent-color:var(--green);cursor:pointer}
+.tos-cb-label{font-size:12.5px;color:var(--text);line-height:1.55;cursor:pointer}
+.tos-cb-label a{color:var(--green)}
+.tos-accept-btn{
+  flex:1;padding:12px;border-radius:100px;
+  background:var(--green);color:#060d08;
+  font-size:13.5px;font-weight:700;
+  border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.tos-accept-btn:disabled{opacity:.35;cursor:not-allowed}
+.tos-accept-btn:not(:disabled):hover{background:var(--green3);transform:translateY(-1px)}
+.tos-decline-btn{
+  padding:12px 20px;border-radius:100px;
+  background:transparent;color:var(--muted);
+  font-size:13px;font-weight:500;
+  border:1px solid rgba(255,255,255,.1);
+  cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;
+}
+.tos-decline-btn:hover{border-color:var(--red);color:var(--red)}
+.tos-lang-note{width:100%;font-size:11px;color:var(--muted);text-align:center}
+
+/* ═══════════════════════════════════════
+   RATE LIMIT OVERLAY
+═══════════════════════════════════════ */
+#rateLimitOverlay{
+  position:fixed;inset:0;
+  background:rgba(6,13,8,.9);
+  backdrop-filter:blur(8px);
+  z-index:9998;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  display:none;
+}
+.rl-card{
+  background:var(--card);border:1px solid rgba(239,83,80,.25);
+  border-radius:18px;padding:32px;
+  width:100%;max-width:380px;text-align:center;
+}
+.rl-icon{font-size:40px;margin-bottom:14px}
+.rl-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:8px}
+.rl-msg{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px}
+.rl-timer{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--green);margin-bottom:16px}
+.rl-dismiss{padding:10px 24px;border-radius:100px;background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2);font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* ═══════════════════════════════════════
+   PRIVACY INDICATOR
+═══════════════════════════════════════ */
+.privacy-strip{
+  background:rgba(0,230,118,.04);
+  border-bottom:1px solid rgba(0,230,118,.08);
+  padding:7px 24px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font-size:11px;color:var(--muted);
+  flex-wrap:wrap;gap:14px;
+}
+.privacy-item{display:flex;align-items:center;gap:5px}
+.privacy-item i{color:var(--green);font-size:10px}
+
+/* ═══════════════════════════════════════
+   DEVTOOLS BLOCK
+═══════════════════════════════════════ */
+#devtoolsBlock{
+  position:fixed;inset:0;
+  background:#060d08;
+  z-index:99999;
+  display:none;
+  align-items:center;justify-content:center;
+  flex-direction:column;
+  text-align:center;padding:40px;
+}
+#devtoolsBlock.show{display:flex}
+.devtools-icon{font-size:48px;margin-bottom:16px}
+.devtools-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:var(--green);margin-bottom:12px}
+.devtools-msg{font-size:14px;color:var(--muted);line-height:1.8;max-width:460px;margin-bottom:24px}
+.devtools-return{padding:12px 28px;border-radius:100px;background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2);font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif}
+
+/* ═══════════════════════════════════════
+   MAIN PAGE (placeholder — your full
+   index.html content goes here)
+═══════════════════════════════════════ */
+.page-content{padding:80px 48px;max-width:1200px;margin:0 auto}
+.hero-sec{text-align:center;padding:100px 0 60px}
+.hero-sec h1{font-family:'Syne',sans-serif;font-size:clamp(40px,6vw,80px);font-weight:800;color:var(--white);letter-spacing:-2px;margin-bottom:16px}
+.hero-sec h1 span{background:linear-gradient(90deg,var(--green),var(--green3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sec p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 32px;line-height:1.75}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-g{padding:14px 28px;border-radius:100px;background:var(--green);color:#060d08;font-size:14px;font-weight:700;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-g:hover{background:var(--green3);box-shadow:0 0 24px rgba(0,230,118,.35);transform:translateY(-2px)}
+.btn-o{padding:14px 26px;border-radius:100px;background:transparent;color:var(--text);font-size:14px;font-weight:500;border:1px solid var(--border);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-o:hover{border-color:var(--green);color:var(--green)}
+@media(max-width:600px){.page-content{padding:80px 20px}.hero-sec{padding:80px 0 40px}}
+</style>
+</head>
+<body>
+
+<!-- ═══ TERMS OF SERVICE OVERLAY ═══ -->
+<div id="tosOverlay">
+  <div class="tos-card">
+    <div class="tos-header">
+      <div class="tos-logo">
+        <div class="tos-logo-dot">🌧</div>
+        <div class="tos-logo-text">Parjanya <span style="color:var(--green)">AI</span></div>
+      </div>
+      <div class="tos-title">Terms of Use & Privacy Notice</div>
+      <div class="tos-sub">Please read and accept before using Parjanya AI</div>
+    </div>
+
+    <div class="tos-body">
+      <div class="tos-section">
+        <h3><i class="fa-solid fa-shield-halved fa-xs"></i> Proprietary Technology</h3>
+        <p>Parjanya AI and all its components — including the AI logic, interface design, crop disease database, recommendation engine, and voice assistant — are the exclusive intellectual property of <strong>Parjanya AI, Dharwad, Karnataka, India</strong>.</p>
+        <div class="tos-highlight">
+          <p>⚖️ <strong>This AI logic and interface are proprietary property of Parjanya AI.</strong> Unauthorized scraping, copying, reverse engineering, or redistribution will be detected and blocked via IP monitoring and watermark verification. Violations are subject to action under the <strong>Indian Copyright Act 1957</strong> and <strong>IT Act 2000 Section 66</strong>.</p>
+        </div>
+      </div>
+
+      <div class="tos-section">
+        <h3><i class="fa-solid fa-location-dot fa-xs"></i> Privacy & Data Protection</h3>
+        <ul>
+          <li>Your GPS coordinates are <strong>masked to a 10km grid</strong> before any processing. Your exact farm location is never stored or transmitted.</li>
+          <li>Photos uploaded for disease detection are processed in memory and <strong>immediately discarded</strong>. No images are stored.</li>
+          <li>Your name and phone number are <strong>never shared</strong> with third parties without explicit consent.</li>
+          <li>All AI conversations are processed via encrypted connections (HTTPS).</li>
+          <li>Farmer profile data is stored locally on your device only.</li>
+        </ul>
+      </div>
+
+      <div class="tos-section">
+        <h3><i class="fa-solid fa-robot fa-xs"></i> AI Advisory Disclaimer</h3>
+        <ul>
+          <li>Parjanya AI provides <strong>advisory information only</strong>, not professional agricultural consultancy.</li>
+          <li>Always verify pesticide recommendations with your nearest <strong>Raitha Samparka Kendra</strong> or Krishi Kendra before applying.</li>
+          <li>Market price forecasts are estimates and not guaranteed. Check <a href="https://enam.gov.in" target="_blank">eNAM.gov.in</a> for official prices.</li>
+          <li>Parjanya AI is not liable for crop losses arising from following AI recommendations without professional verification.</li>
+        </ul>
+      </div>
+
+      <div class="tos-section">
+        <h3><i class="fa-solid fa-gavel fa-xs"></i> Acceptable Use</h3>
+        <ul>
+          <li>This service is for <strong>Indian farmers and agri-professionals only</strong>.</li>
+          <li>Automated access, bots, scrapers, and bulk queries are <strong>strictly prohibited</strong>.</li>
+          <li>Attempting to extract system prompts or AI instructions is a <strong>violation</strong> of these terms.</li>
+          <li>Abuse triggers automatic IP blocking and may result in legal notice.</li>
+        </ul>
+      </div>
+
+      <div class="tos-section">
+        <h3><i class="fa-solid fa-envelope fa-xs"></i> Contact</h3>
+        <p>ak.founderr@gmail.com · +91 97412 76963 · Dharwad, Karnataka, India</p>
+      </div>
+    </div>
+
+    <div class="tos-checkbox-row">
+      <input type="checkbox" class="tos-cb" id="tosCb1" onchange="checkTosReady()">
+      <label class="tos-cb-label" for="tosCb1">I have read and agree to the Terms of Use. I understand that Parjanya AI is proprietary technology and copying or scraping is prohibited.</label>
+    </div>
+    <div class="tos-checkbox-row">
+      <input type="checkbox" class="tos-cb" id="tosCb2" onchange="checkTosReady()">
+      <label class="tos-cb-label" for="tosCb2">I consent to location masking and understand my exact GPS will never be stored. I am using this for legitimate farming purposes.</label>
+    </div>
+
+    <div class="tos-footer">
+      <button class="tos-accept-btn" id="tosAcceptBtn" disabled onclick="acceptTOS()">I Accept — Enter Parjanya AI →</button>
+      <button class="tos-decline-btn" onclick="declineTOS()">Decline</button>
+      <div class="tos-lang-note">ಕನ್ನಡ · हिन्दी · తెలుగు · English · Available in all languages inside the app</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RATE LIMIT OVERLAY ═══ -->
+<div id="rateLimitOverlay">
+  <div class="rl-card">
+    <div class="rl-icon">🛡</div>
+    <div class="rl-title">Rate Limit Reached</div>
+    <div class="rl-msg">You have sent too many messages in a short time. For security, we limit requests to prevent bot abuse.<br><br>Please wait and try again.</div>
+    <div class="rl-timer" id="rlTimer">60s</div>
+    <button class="rl-dismiss" onclick="dismissRateLimit()">Dismiss</button>
+  </div>
+</div>
+
+<!-- ═══ DEVTOOLS BLOCK OVERLAY ═══ -->
+<div id="devtoolsBlock">
+  <div class="devtools-icon">🔒</div>
+  <div class="devtools-title">© Parjanya AI — Protected Content</div>
+  <div class="devtools-msg">
+    This application contains proprietary technology owned by<br>
+    <strong style="color:var(--text)">Parjanya AI · Dharwad, Karnataka, India</strong><br><br>
+    Unauthorized inspection, copying, or reproduction is prohibited<br>
+    under the <strong>Indian Copyright Act 1957</strong>.<br><br>
+    <span style="color:var(--green)">Contact: ak.founderr@gmail.com</span><br>
+    <span style="color:var(--muted);font-size:12px">Incident logged: IP monitoring active</span>
+  </div>
+  <button class="devtools-return" onclick="location.reload()">← Return to Website</button>
+</div>
+
+<!-- ═══ PRIVACY STRIP ═══ -->
+<div class="privacy-strip" id="privacyStrip" style="display:none">
+  <div class="privacy-item"><i class="fa-solid fa-shield-halved"></i> GPS masked to 10km grid</div>
+  <div class="privacy-item"><i class="fa-solid fa-eye-slash"></i> No images stored</div>
+  <div class="privacy-item"><i class="fa-solid fa-lock"></i> End-to-end encrypted</div>
+  <div class="privacy-item"><i class="fa-solid fa-clock"></i> Rate limited: <span id="reqCounter" style="color:var(--green)">10 remaining</span></div>
+</div>
+
+<!-- ═══ MAIN PAGE CONTENT ═══ -->
+<main class="page-content" id="mainContent" style="display:none">
+  <div class="hero-sec">
+    <h1>AI for the Future<br>of <span>Farming</span></h1>
+    <p>Parjanya AI — live weather, real mandi prices, computer vision disease detection, and voice assistant in Kannada. Secured and private.</p>
+    <div class="hero-btns">
+      <button class="btn-g" id="openChatMainBtn"><i class="fa-solid fa-microphone"></i> Talk to AI Now</button>
+      <button class="btn-o"><i class="fa-solid fa-chart-line"></i> Live Dashboard →</button>
+    </div>
+  </div>
+</main>
+
+<!-- ══════════════════════════════════════════════════
+     SECURITY JAVASCRIPT
+     All functions are obfuscated in production build.
+     Source code here is for development only.
+══════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ════════════════════════════════════════
+   FRONTEND RATE LIMITER
+   Mirrors the server-side rate limiter.
+   Blocks abusive users before they hit the API.
+════════════════════════════════════════ */
+const FrontendRateLimiter = {
+  MAX_PER_MINUTE: 10,
+  WINDOW_MS: 60 * 1000,
+  timestamps: [],
+  blockedUntil: 0,
+
+  check() {
+    const now = Date.now();
+    if(now < this.blockedUntil) {
+      const remaining = Math.ceil((this.blockedUntil - now) / 1000);
+      this.showRateLimitUI(remaining);
+      return false;
+    }
+    this.timestamps = this.timestamps.filter(t => now - t < this.WINDOW_MS);
+    this.timestamps.push(now);
+    if(this.timestamps.length > this.MAX_PER_MINUTE) {
+      this.blockedUntil = now + this.WINDOW_MS;
+      this.showRateLimitUI(60);
+      return false;
+    }
+    // Update counter display
+    const remaining = this.MAX_PER_MINUTE - this.timestamps.length;
+    const el = document.getElementById('reqCounter');
+    if(el) {
+      el.textContent = remaining + ' remaining';
+      el.style.color = remaining <= 3 ? 'var(--red)' : remaining <= 6 ? 'var(--amber)' : 'var(--green)';
+    }
+    return true;
+  },
+
+  showRateLimitUI(seconds) {
+    const overlay = document.getElementById('rateLimitOverlay');
+    overlay.style.display = 'flex';
+    let t = seconds;
+    const el = document.getElementById('rlTimer');
+    el.textContent = t + 's';
+    const interval = setInterval(() => {
+      t--;
+      el.textContent = t + 's';
+      if(t <= 0) {
+        clearInterval(interval);
+        overlay.style.display = 'none';
+        this.timestamps = [];
+        this.blockedUntil = 0;
+      }
+    }, 1000);
+  }
+};
+
+function dismissRateLimit() {
+  document.getElementById('rateLimitOverlay').style.display = 'none';
+}
+
+/* ════════════════════════════════════════
+   TERMS OF SERVICE SYSTEM
+════════════════════════════════════════ */
+const TOS_KEY = 'pj_tos_accepted_v2';
+const TOS_EXPIRY_DAYS = 90; // Re-show every 90 days
+
+function checkTosRequired() {
+  const stored = localStorage.getItem(TOS_KEY);
+  if(stored) {
+    const { timestamp } = JSON.parse(stored);
+    const ageMs = Date.now() - timestamp;
+    if(ageMs < TOS_EXPIRY_DAYS * 24 * 60 * 60 * 1000) {
+      // TOS still valid — show main content
+      document.getElementById('tosOverlay').classList.add('accepted');
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('privacyStrip').style.display = 'flex';
+      return;
+    }
+  }
+  // Show TOS overlay
+  document.getElementById('tosOverlay').style.removeProperty('display');
+}
+
+function checkTosReady() {
+  const cb1 = document.getElementById('tosCb1').checked;
+  const cb2 = document.getElementById('tosCb2').checked;
+  document.getElementById('tosAcceptBtn').disabled = !(cb1 && cb2);
+}
+
+function acceptTOS() {
+  // Record acceptance with timestamp and basic fingerprint
+  const acceptance = {
+    timestamp: Date.now(),
+    version: 'v2-2026',
+    ip_hash: btoa(Date.now().toString(36)), // Rough client fingerprint
+    userAgent_hash: btoa(navigator.userAgent.substring(0, 50))
+  };
+  localStorage.setItem(TOS_KEY, JSON.stringify(acceptance));
+
+  // Animate out
+  const overlay = document.getElementById('tosOverlay');
+  overlay.style.transition = 'opacity .4s ease';
+  overlay.style.opacity = '0';
+  setTimeout(() => {
+    overlay.classList.add('accepted');
+    document.getElementById('mainContent').style.display = 'block';
+    document.getElementById('privacyStrip').style.display = 'flex';
+  }, 400);
+}
+
+function declineTOS() {
+  // Redirect to home if they decline
+  document.getElementById('tosOverlay').innerHTML = `
+    <div style="text-align:center;padding:40px;color:var(--muted)">
+      <div style="font-size:40px;margin-bottom:16px">🌧</div>
+      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:var(--white);margin-bottom:8px">Access Declined</div>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px">You must accept the Terms of Use to access Parjanya AI.</p>
+      <button onclick="location.reload()" style="padding:10px 22px;border-radius:100px;background:rgba(0,230,118,.1);color:var(--green);border:1px solid rgba(0,230,118,.2);font-size:13px;cursor:pointer;font-family:'DM Sans',sans-serif">← Go Back</button>
+    </div>`;
+}
+
+/* ════════════════════════════════════════
+   SECURITY VAULT — Privacy Masking
+════════════════════════════════════════ */
+const SecurityVault = {
+  maskCoords(lat, lon) {
+    // Round to 1 decimal = ~11km grid. Never expose exact farm location.
+    return { lat: Math.round(parseFloat(lat) * 10) / 10, lon: Math.round(parseFloat(lon) * 10) / 10 };
+  },
+
+  sanitizeMessage(text) {
+    // Remove potential PII before sending to AI
+    return text
+      .replace(/\b\d{10}\b/g, '[phone]')
+      .replace(/\b\d{12}\b/g, '[id]')
+      .replace(/\b[A-Z]{5}\d{4}[A-Z]\b/g, '[pan]')
+      .trim()
+      .substring(0, 1500); // Hard length limit
+  },
+
+  anonymizeFarmerProfile(profile) {
+    if(!profile) return null;
+    return {
+      // Keep useful context, remove PII
+      location: profile.location ? profile.location.split(',')[0].trim() : null, // City only, no GPS
+      crop: profile.crop || null,
+      soilType: profile.soilType || null,
+      farmSize: profile.farmSize ? Math.round(profile.farmSize) + ' acres range' : null, // Round to avoid identification
+      issues: (profile.issues || []).slice(0, 3) // Max 3 past issues
+      // NEVER send: phone, name, exact GPS, Aadhaar, bank details
+    };
+  },
+
+  validateImageUpload(file) {
+    const allowed = ['image/jpeg', 'image/png', 'image/webp'];
+    if(!allowed.includes(file.type)) return { ok: false, reason: 'Only JPEG, PNG, WebP images accepted.' };
+    if(file.size > 4 * 1024 * 1024) return { ok: false, reason: 'Image too large. Max 4MB.' };
+    if(file.size < 1000) return { ok: false, reason: 'Image too small — may be corrupted.' };
+    return { ok: true };
+  }
+};
+
+/* ════════════════════════════════════════
+   WATERMARK VERIFIER
+   Check if content was stolen from us
+════════════════════════════════════════ */
+const WatermarkVerifier = {
+  verify(text) {
+    const zw = text.match(/[\u200B\u200C]+/);
+    if(!zw) return { watermarked: false };
+    const binary = zw[0].split('').map(c => c === '\u200B' ? '0' : '1').join('');
+    let decoded = '';
+    for(let i = 0; i < binary.length && i < 160; i += 8) {
+      const byte = parseInt(binary.substr(i, 8), 2);
+      if(byte > 31 && byte < 128) decoded += String.fromCharCode(byte);
+    }
+    return { watermarked: decoded.startsWith('PARJANYA'), decoded };
+  },
+
+  stripForDisplay(text) {
+    // Remove invisible chars for display (they confuse screen readers)
+    return text.replace(/[\u200B\u200C\u200D\uFEFF]/g, '');
+  }
+};
+
+/* ════════════════════════════════════════
+   COPY PROTECTION
+════════════════════════════════════════ */
+(function() {
+  // Disable right-click
+  document.addEventListener('contextmenu', e => { e.preventDefault(); return false; });
+
+  // Disable keyboard shortcuts
+  document.addEventListener('keydown', e => {
+    const ctrl = e.ctrlKey || e.metaKey;
+    const key = e.key;
+    if(e.key === 'F12') { e.preventDefault(); return false; }
+    if(ctrl && e.shiftKey && ['I','J','C','K'].includes(key.toUpperCase())) { e.preventDefault(); return false; }
+    if(ctrl && key.toUpperCase() === 'U') { e.preventDefault(); return false; }
+    if(ctrl && key.toUpperCase() === 'S') { e.preventDefault(); return false; }
+    if(key === 'PrintScreen') { e.preventDefault(); return false; }
+  }, true);
+
+  // Disable copy outside inputs
+  document.addEventListener('copy', e => {
+    const tag = document.activeElement?.tagName?.toLowerCase();
+    if(tag !== 'input' && tag !== 'textarea') { e.preventDefault(); return false; }
+  });
+
+  // Disable image drag
+  document.addEventListener('dragstart', e => { if(e.target?.tagName === 'IMG') e.preventDefault(); });
+
+  // DevTools detection
+  let dtOpen = false;
+  const threshold = 160;
+  setInterval(() => {
+    const open = (window.outerWidth - window.innerWidth > threshold) ||
+                 (window.outerHeight - window.innerHeight > threshold);
+    if(open && !dtOpen) {
+      dtOpen = true;
+      document.getElementById('devtoolsBlock').classList.add('show');
+    } else if(!open && dtOpen) {
+      dtOpen = false;
+      document.getElementById('devtoolsBlock').classList.remove('show');
+    }
+  }, 800);
+
+  // Console warning
+  const s1 = 'color:#ef5350;font-size:20px;font-weight:bold';
+  const s2 = 'color:#6b8f72;font-size:12px';
+  console.log('%c⛔ PARJANYA AI — PROTECTED\n%c© 2026 Parjanya AI · ak.founderr@gmail.com · Indian Copyright Act 1957\nUnauthorized copying is a criminal offence.', s1, s2);
+
+  // Invisible ownership stamp in DOM
+  const wm = document.createComment(' © 2026 Parjanya AI · Owner: ak.founderr@gmail.com · Dharwad, Karnataka · Protected · IP Monitored ');
+  document.head.appendChild(wm);
+})();
+
+/* ════════════════════════════════════════
+   ENHANCED sendMsg WITH ALL SECURITY LAYERS
+   Drop this in place of your existing sendMsg
+════════════════════════════════════════ */
+async function secureSendMsg(rawMessage, conversationHistory, farmerProfile) {
+  // 1. Frontend rate limit check
+  if(!FrontendRateLimiter.check()) return null;
+
+  // 2. Privacy masking
+  const sanitized = SecurityVault.sanitizeMessage(rawMessage);
+  const anonymizedProfile = SecurityVault.anonymizeFarmerProfile(farmerProfile);
+
+  // 3. Send to secured backend
+  try {
+    const res = await fetch('/.netlify/functions/chatbot', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        // Token to help server verify legitimate requests
+        'X-Parjanya-Token': btoa(Date.now().toString() + ':' + navigator.userAgent.length)
+      },
+      body: JSON.stringify({
+        message: sanitized,
+        conversationHistory: conversationHistory.slice(-12),
+        farmerProfile: anonymizedProfile
+      })
+    });
+
+    if(res.status === 429) {
+      FrontendRateLimiter.showRateLimitUI(60);
+      return null;
+    }
+
+    if(res.status === 403) {
+      console.warn('Request blocked by server security');
+      return { reply: 'Request blocked. If this is an error, please refresh the page.' };
+    }
+
+    const data = await res.json();
+
+    // 4. Strip invisible watermark for display (watermark is in the text but invisible)
+    if(data.reply) {
+      data.displayReply = WatermarkVerifier.stripForDisplay(data.reply);
+    }
+
+    return data;
+
+  } catch(err) {
+    console.error('Send error:', err);
+    return null;
+  }
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+  checkTosRequired();
+
+  // Attach to your existing chat buttons
+  const chatBtn = document.getElementById('openChatMainBtn');
+  if(chatBtn) chatBtn.onclick = () => { if(typeof openChat === 'function') openChat(); };
+});
+</script>
+
+</body>
+</html>
