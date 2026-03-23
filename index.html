@@ -20,6 +20,102 @@
   --gg:rgba(240,192,64,.22);
 }
 html{scroll-behavior:smooth}
+/* ═══════════════════════════════════════
+   LIVE TICKER BAR
+═══════════════════════════════════════ */
+.tkbar{position:fixed;top:0;left:0;right:0;z-index:101;height:28px;background:rgba(6,13,6,.98);border-bottom:1px solid rgba(240,192,64,.18);display:flex;align-items:center;overflow:hidden;font-size:11px;font-weight:700}
+.tklab{flex-shrink:0;padding:0 10px 0 12px;color:#060d06;background:var(--gold);height:100%;display:flex;align-items:center;gap:4px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.tkdiv{flex-shrink:0;width:1px;height:100%;background:rgba(240,192,64,.25)}
+.tkscroll{flex:1;overflow:hidden;position:relative;height:100%}
+.tkinner{display:flex;align-items:center;height:100%;gap:0;white-space:nowrap;animation:tkslide 60s linear infinite}
+@keyframes tkslide{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tkitem{padding:0 22px;display:flex;align-items:center;gap:5px;height:100%;border-right:1px solid rgba(240,192,64,.1);color:var(--muted)}
+.tkitem .tkname{color:var(--cream);font-size:10.5px}
+.tkitem .tkprice{color:var(--gold);font-variant-numeric:tabular-nums}
+.tkup{color:#69f0ae!important}
+.tkdn{color:#ff5252!important}
+.tkitem .tkarrow{font-size:8px}
+nav{top:28px}
+
+/* ═══════════════════════════════════════
+   MARKET PULSE SECTION
+═══════════════════════════════════════ */
+#mktpulse{background:#050c04;border-top:1px solid rgba(240,192,64,.12);border-bottom:1px solid rgba(240,192,64,.12);position:relative;overflow:hidden;padding:60px 0 70px}
+#mktpulse::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(240,192,64,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(240,192,64,.03) 1px,transparent 1px);background-size:44px 44px;pointer-events:none}
+.mphead{display:flex;align-items:center;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:12px}
+.livebadge{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 7px;background:rgba(105,240,174,.08);border:1px solid rgba(105,240,174,.25);border-radius:100px;font-size:10px;font-weight:900;color:#69f0ae;letter-spacing:.08em;text-transform:uppercase}
+.livebadge::before{content:'';width:6px;height:6px;border-radius:50%;background:#69f0ae;box-shadow:0 0 8px #69f0ae;animation:blink 1.2s infinite}
+.mprefresh{font-size:10px;color:var(--dim);display:flex;align-items:center;gap:5px;cursor:pointer;padding:4px 10px;border-radius:100px;border:1px solid var(--b2);background:transparent;color:var(--muted);font-family:'Cabinet Grotesk',sans-serif;transition:all .2s}
+.mprefresh:hover{border-color:var(--gold);color:var(--gold)}
+.cpgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+.cpcard{background:rgba(11,21,9,.8);border:1px solid var(--b2);border-radius:14px;padding:16px 16px 13px;position:relative;overflow:hidden;transition:all .28s;cursor:default}
+.cpcard:hover{border-color:rgba(240,192,64,.3);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.cpcard.up{border-color:rgba(105,240,174,.18)}
+.cpcard.dn{border-color:rgba(255,82,82,.18)}
+.cptop{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.cpemoji{font-size:20px;line-height:1}
+.cpchg{font-size:11px;font-weight:900;padding:2px 7px;border-radius:100px}
+.chg-up{background:rgba(105,240,174,.12);color:#69f0ae}
+.chg-dn{background:rgba(255,82,82,.1);color:#ff5252}
+.chg-fl{background:rgba(255,193,7,.1);color:#ffc107}
+.cpname{font-size:12px;color:var(--muted);margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.cpkn{font-size:10px;color:var(--dim)}
+.cpprice{font-size:28px;font-weight:900;color:var(--white);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.cpunit{font-size:11px;color:var(--muted);font-weight:400}
+.cpbar{height:2px;background:var(--b2);border-radius:1px;margin:10px 0 8px;overflow:hidden}
+.cpbarfill{height:100%;border-radius:1px;transition:width .6s ease}
+.cpbottom{display:flex;justify-content:space-between;align-items:center}
+.cpbestm{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:3px}
+.cpbestm strong{color:var(--gold)}
+.cpspk{height:28px;flex:1;margin-left:10px}
+.sparksvg{width:100%;height:100%}
+
+/* Mandi Spotlight */
+.mspotlight{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
+.mspot{background:rgba(11,21,9,.6);border:1px solid var(--b2);border-radius:12px;padding:14px 16px;display:flex;align-items:center;gap:12px}
+.mspotic{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.msptxt{flex:1}
+.msptitle{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px}
+.mspval{font-size:14px;font-weight:900;color:var(--white)}
+.mspsub{font-size:10px;color:var(--muted)}
+
+/* ═══════════════════════════════════════
+   KARNATAKA INTELLIGENCE FEED  
+═══════════════════════════════════════ */
+#kifeed{background:var(--ink);padding:60px 0}
+.kiflex{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+.kifeed-main{display:flex;flex-direction:column;gap:10px}
+.kicard{background:rgba(11,21,9,.7);border:1px solid var(--b2);border-radius:13px;padding:15px 16px;display:flex;gap:12px;align-items:flex-start;transition:all .22s;cursor:pointer}
+.kicard:hover{border-color:var(--b1);transform:translateX(4px)}
+.kicard-ic{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-top:1px}
+.kicard-body{flex:1}
+.kicard-tag{font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.kicard-title{font-size:13px;font-weight:800;color:var(--white);line-height:1.35;margin-bottom:4px}
+.kicard-sub{font-size:11px;color:var(--muted);line-height:1.5}
+.kicard-time{font-size:9.5px;color:var(--dim);margin-top:5px}
+.ki-side{display:flex;flex-direction:column;gap:10px}
+.kimet{background:rgba(11,21,9,.7);border:1px solid var(--b2);border-radius:13px;padding:16px}
+.kimet-title{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.kimet-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s infinite}
+.kiseasonbar{display:flex;gap:4px;margin-top:4px}
+.kiszn{flex:1;padding:7px 5px;border-radius:7px;text-align:center;font-size:9.5px;font-weight:700}
+.kiszn.on{background:rgba(240,192,64,.14);border:1px solid rgba(240,192,64,.3);color:var(--gold)}
+.kiszn.off{background:rgba(255,255,255,.03);border:1px solid var(--b2);color:var(--dim)}
+.kidmd{display:flex;flex-direction:column;gap:6px}
+.kidmd-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.kidmd-row:last-child{border-bottom:none}
+.kidmd-label{font-size:11px;color:var(--muted)}
+.kidmd-val{font-size:12px;font-weight:800;color:var(--white)}
+.kidmd-val.g{color:#69f0ae}.kidmd-val.r{color:#ff5252}.kidmd-val.a{color:#ffc107}
+
+/* ═══════════════════════════════════════
+   PRICE ANIMATION  
+═══════════════════════════════════════ */
+@keyframes priceflash{0%,100%{background:transparent}50%{background:rgba(105,240,174,.12)}}
+.price-flash{animation:priceflash .6s ease}
+@keyframes countup{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.count-anim{animation:countup .4s ease}
+
 body{background:var(--ink);color:var(--cream);font-family:'Cabinet Grotesk',sans-serif;overflow-x:hidden;line-height:1.6;-webkit-user-select:none;user-select:none}
 input,textarea{-webkit-user-select:text!important;user-select:text!important}
 a{text-decoration:none;color:inherit}
@@ -268,6 +364,37 @@ footer{background:var(--deep);border-top:1px solid var(--b2);padding:44px 0 24px
 </style>
 </head>
 <body>
+
+<!-- LIVE PRICE TICKER -->
+<div class="tkbar" id="tkbar">
+  <div class="tklab"><span style="width:5px;height:5px;border-radius:50%;background:#060d06;box-shadow:0 0 5px #069f2a;animation:blink 1s infinite;display:inline-block"></span>LIVE</div>
+  <div class="tkscroll"><div class="tkinner" id="tkinner">
+    <div class="tkitem"><span class="tkname">🍅 Tomato</span><span class="tkprice">₹1,240/q</span><span class="tkarrow tkup">▲</span><span class="tkup">12.2%</span></div>
+    <div class="tkitem"><span class="tkname">🧅 Onion</span><span class="tkprice">₹890/q</span><span class="tkarrow tkdn">▼</span><span class="tkdn">3.3%</span></div>
+    <div class="tkitem"><span class="tkname">🌿 Cotton</span><span class="tkprice">₹6,820/q</span><span class="tkarrow tkup">▲</span><span class="tkup">1.8%</span></div>
+    <div class="tkitem"><span class="tkname">🌽 Maize</span><span class="tkprice">₹2,050/q</span><span class="tkarrow tkup">▲</span><span class="tkup">4.5%</span></div>
+    <div class="tkitem"><span class="tkname">🌶 Chilli</span><span class="tkprice">₹14,200/q</span><span class="tkarrow tkdn">▼</span><span class="tkdn">1.1%</span></div>
+    <div class="tkitem"><span class="tkname">🥜 Groundnut</span><span class="tkprice">₹5,640/q</span><span class="tkarrow tkup">▲</span><span class="tkup">2.9%</span></div>
+    <div class="tkitem"><span class="tkname">🌾 Paddy</span><span class="tkprice">₹2,183/q</span><span class="tkarrow">—</span><span style="color:var(--muted)">MSP</span></div>
+    <div class="tkitem"><span class="tkname">🫘 Tur Dal</span><span class="tkprice">₹8,900/q</span><span class="tkarrow tkup">▲</span><span class="tkup">6.7%</span></div>
+    <div class="tkitem"><span class="tkname">🌻 Sunflower</span><span class="tkprice">₹6,760/q</span><span class="tkarrow tkdn">▼</span><span class="tkdn">0.8%</span></div>
+    <div class="tkitem"><span class="tkname">🌱 Ragi</span><span class="tkprice">₹3,846/q</span><span class="tkarrow">—</span><span style="color:var(--muted)">MSP</span></div>
+    <div class="tkitem"><span class="tkname">📍 Hubli APMC</span><span class="tkprice">Open ✓</span><span style="color:#69f0ae"> 7AM–6PM</span></div>
+    <div class="tkitem"><span class="tkname">📍 Dharwad APMC</span><span class="tkprice">Open ✓</span><span style="color:#69f0ae"> 7AM–6PM</span></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="tkitem"><span class="tkname">🍅 Tomato</span><span class="tkprice">₹1,240/q</span><span class="tkarrow tkup">▲</span><span class="tkup">12.2%</span></div>
+    <div class="tkitem"><span class="tkname">🧅 Onion</span><span class="tkprice">₹890/q</span><span class="tkarrow tkdn">▼</span><span class="tkdn">3.3%</span></div>
+    <div class="tkitem"><span class="tkname">🌿 Cotton</span><span class="tkprice">₹6,820/q</span><span class="tkarrow tkup">▲</span><span class="tkup">1.8%</span></div>
+    <div class="tkitem"><span class="tkname">🌽 Maize</span><span class="tkprice">₹2,050/q</span><span class="tkarrow tkup">▲</span><span class="tkup">4.5%</span></div>
+    <div class="tkitem"><span class="tkname">🌶 Chilli</span><span class="tkprice">₹14,200/q</span><span class="tkarrow tkdn">▼</span><span class="tkdn">1.1%</span></div>
+    <div class="tkitem"><span class="tkname">🥜 Groundnut</span><span class="tkprice">₹5,640/q</span><span class="tkarrow tkup">▲</span><span class="tkup">1.8%</span></div>
+    <div class="tkitem"><span class="tkname">🌾 Paddy</span><span class="tkprice">₹2,183/q</span><span class="tkarrow">—</span><span style="color:var(--muted)">MSP</span></div>
+    <div class="tkitem"><span class="tkname">🫘 Tur Dal</span><span class="tkprice">₹8,900/q</span><span class="tkarrow tkup">▲</span><span class="tkup">6.7%</span></div>
+    <div class="tkitem"><span class="tkname">🌻 Sunflower</span><span class="tkprice">₹6,760/q</span><span class="tkarrow tkdn">▼</span><span class="tkdn">0.8%</span></div>
+    <div class="tkitem"><span class="tkname">🌱 Ragi</span><span class="tkprice">₹3,846/q</span><span class="tkarrow">—</span><span style="color:var(--muted)">MSP</span></div>
+  </div></div>
+</div>
+
 <canvas id="c"></canvas>
 <nav id="nav">
   <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
@@ -337,6 +464,112 @@ footer{background:var(--deep);border-top:1px solid var(--b2);padding:44px 0 24px
         <button class="cp" onclick="sc(this,'groundnut')">🥜 Groundnut</button>
       </div>
       <button class="brs" id="bscn" onclick="doScan()">🛰 Scan Now</button>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+
+<!-- ████ MARKET PULSE SECTION ████ -->
+<section id="mktpulse">
+ <div class="con">
+  <div class="mphead rv">
+   <div>
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+     <div class="livebadge">Karnataka Live</div>
+     <span style="font-size:10px;color:var(--dim)" id="mkttime">Fetching prices...</span>
+    </div>
+    <h2 class="sh" style="margin-bottom:4px">Mandi Market <em>Pulse.</em></h2>
+    <p class="sp" style="font-size:13px">Real-time wholesale prices across Karnataka APMCs. Best mandi to sell at, right now.</p>
+   </div>
+   <button class="mprefresh" onclick="refreshPrices()"><i class="fa-solid fa-rotate fa-xs" id="rficon"></i> Refresh</button>
+  </div>
+
+  <!-- 6-CROP PRICE GRID -->
+  <div class="cpgrid rv" id="cpgrid">
+   <!-- Cards injected by JS -->
+  </div>
+
+  <!-- MANDI SPOTLIGHT -->
+  <div class="mspotlight rv">
+   <div class="mspot">
+    <div class="mspotic" style="background:rgba(105,240,174,.1)">📍</div>
+    <div class="msptxt">
+     <div class="msptitle">Top Mandi Today</div>
+     <div class="mspval" id="topmandi">Hubli APMC</div>
+     <div class="mspsub" id="topmandiSub">Highest tomato volumes</div>
+    </div>
+   </div>
+   <div class="mspot">
+    <div class="mspotic" style="background:rgba(240,192,64,.1)">📈</div>
+    <div class="msptxt">
+     <div class="msptitle">Best Crop to Sell</div>
+     <div class="mspval" id="bestcrop">🫘 Tur Dal +6.7%</div>
+     <div class="mspsub" id="bestcropSub">Highest weekly gain</div>
+    </div>
+   </div>
+   <div class="mspot">
+    <div class="mspotic" style="background:rgba(255,82,82,.08)">⚠️</div>
+    <div class="msptxt">
+     <div class="msptitle">Market Alert</div>
+     <div class="mspval" id="mktAlert" style="font-size:12px;color:#ffc107">Onion supply ↑</div>
+     <div class="mspsub" id="mktAlertSub">Price pressure this week</div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<!-- ████ KARNATAKA INTELLIGENCE FEED ████ -->
+<section id="kifeed">
+ <div class="con">
+  <div class="rv" style="margin-bottom:28px">
+   <div class="eye">Live Intelligence</div>
+   <h2 class="sh">What's happening in<br><em>Karnataka farming.</em></h2>
+  </div>
+  <div class="kiflex">
+   <div class="kifeed-main rv" id="kifeedMain">
+    <!-- Cards injected by JS -->
+   </div>
+   <div class="ki-side rv">
+    <!-- Season widget -->
+    <div class="kimet">
+     <div class="kimet-title">Season Status — 2026</div>
+     <div class="kiseasonbar">
+      <div class="kiszn off">Kharif<br><small>Jun–Oct</small></div>
+      <div class="kiszn on">Rabi<br><small>NOW ✓</small></div>
+      <div class="kiszn off">Summer<br><small>Mar–May</small></div>
+     </div>
+     <div style="margin-top:12px;font-size:11px;color:var(--muted);line-height:1.6">
+      <strong style="color:var(--cream)">March Rabi Season</strong> — ideal time for summer crops. Cotton sowing window opens April 1st. Jowar harvest underway.
+     </div>
+    </div>
+    <!-- Live metrics -->
+    <div class="kimet">
+     <div class="kimet-title">Live Farm Metrics</div>
+     <div class="kidmd" id="farmMetrics">
+      <div class="kidmd-row"><span class="kidmd-label">Today Dharwad temp</span><span class="kidmd-val a" id="curTemp">36°C</span></div>
+      <div class="kidmd-row"><span class="kidmd-label">Humidity</span><span class="kidmd-val" id="curHum">—</span></div>
+      <div class="kidmd-row"><span class="kidmd-label">72hr rain chance</span><span class="kidmd-val" id="curRain">—</span></div>
+      <div class="kidmd-row"><span class="kidmd-label">Wind gust</span><span class="kidmd-val" id="curWind">—</span></div>
+      <div class="kidmd-row"><span class="kidmd-label">IMD Zone</span><span class="kidmd-val" style="font-size:10px;color:var(--gold)">North Interior KA</span></div>
+     </div>
+    </div>
+    <!-- Govt schemes quick access -->
+    <div class="kimet">
+     <div class="kimet-title">Active Govt Schemes</div>
+     <div style="display:flex;flex-direction:column;gap:6px">
+      <div style="font-size:11.5px;padding:8px 10px;background:rgba(240,192,64,.05);border:1px solid var(--b2);border-radius:8px;color:var(--cream);line-height:1.4">
+       <strong style="color:var(--gold)">PM-KISAN</strong> — 19th installment ₹2,000 due Apr 2026
+      </div>
+      <div style="font-size:11.5px;padding:8px 10px;background:rgba(240,192,64,.05);border:1px solid var(--b2);border-radius:8px;color:var(--cream);line-height:1.4">
+       <strong style="color:var(--gold)">Krishi Bhagya</strong> — Farm pond subsidy 50% open
+      </div>
+      <div style="font-size:11.5px;padding:8px 10px;background:rgba(240,192,64,.05);border:1px solid var(--b2);border-radius:8px;color:var(--cream);line-height:1.4">
+       <strong style="color:var(--gold)">PMFBY</strong> — Rabi crop insurance deadline Mar 31
+      </div>
+     </div>
     </div>
    </div>
   </div>
@@ -479,7 +712,7 @@ footer{background:var(--deep);border-top:1px solid var(--b2);padding:44px 0 24px
 <div id="toast"><span style="font-size:18px;flex-shrink:0">⚠️</span><div class="tt"><strong id="tt1">Alert</strong><span id="tt2"></span></div><button class="tvw" onclick="dimT()">View →</button></div>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 'use strict';
-const API='https://parjanya-ai.ak-founderr.workers.dev';
+const API=location.origin;
 
 /* Rain canvas */
 (function(){var c=document.getElementById('c'),x=c.getContext('2d'),d=[];function rs(){c.width=innerWidth;c.height=innerHeight;d=[];for(var i=0;i<50;i++)d.push({x:Math.random()*c.width,y:Math.random()*c.height,l:Math.random()*16+5,s:Math.random()*1.6+.7,o:Math.random()*.3+.08});}rs();window.addEventListener('resize',rs,{passive:true});(function f(){x.clearRect(0,0,c.width,c.height);d.forEach(function(p){x.strokeStyle='rgba(76,175,80,'+p.o+')';x.lineWidth=.55;x.beginPath();x.moveTo(p.x,p.y);x.lineTo(p.x-p.l*.14,p.y+p.l);x.stroke();p.y+=p.s;p.x-=p.s*.12;if(p.y>c.height){p.y=-18;p.x=Math.random()*c.width;}});requestAnimationFrame(f);})();})();
@@ -717,9 +950,199 @@ async function onScanFile(e){
   reader.readAsDataURL(file);
 }
 
+
+/* ═══════════════════════════════════════════
+   MARKET PULSE ENGINE
+═══════════════════════════════════════════ */
+var MKTDATA = [
+  {id:'tomato',  name:'Tomato',    kn:'ಟೊಮ್ಯಾಟೊ', e:'🍅', price:1240, prev:1105, unit:'/q', mandi:'Hubli APMC',  trend:[890,920,1050,980,1100,1180,1240], max:1500, min:600},
+  {id:'onion',   name:'Onion',     kn:'ಈರುಳ್ಳಿ',  e:'🧅', price:890,  prev:920,  unit:'/q', mandi:'Dharwad',    trend:[1200,1100,980,960,920,900,890],   max:1500, min:400},
+  {id:'cotton',  name:'Cotton',    kn:'ಹತ್ತಿ',     e:'🌿', price:6820, prev:6700, unit:'/q', mandi:'Hubli APMC', trend:[6400,6500,6600,6580,6700,6750,6820],max:8000,min:5000},
+  {id:'maize',   name:'Maize',     kn:'ಜೋಳ',       e:'🌽', price:2050, prev:1963, unit:'/q', mandi:'Davanagere', trend:[1800,1850,1900,1960,1990,2020,2050],max:2500,min:1500},
+  {id:'chilli',  name:'Chilli',    kn:'ಮೆಣಸಿನಕಾಯಿ',e:'🌶', price:14200,prev:14360,unit:'/q', mandi:'Byadgi APMC',trend:[15000,14800,14500,14400,14300,14250,14200],max:18000,min:8000},
+  {id:'groundnut',name:'Groundnut',kn:'ಶೇಂಗಾ',     e:'🥜', price:5640, prev:5480, unit:'/q', mandi:'Gadag APMC', trend:[5100,5200,5300,5400,5480,5560,5640],max:7000,min:4000},
+];
+var KI_FEED = [
+  {tag:'Market Alert', tagColor:'#ff5252', ic:'📊', icBg:'rgba(255,82,82,.1)',
+   title:'Tomato prices surge 12% in North Karnataka mandis',
+   sub:'Heavy rains in Andhra reduced supply. Hubli APMC recorded ₹1,280/q on Friday. Analysts expect prices to hold through April.',
+   time:'Today · 9:30 AM'},
+  {tag:'Govt Advisory', tagColor:'#ffc107', ic:'🏛', icBg:'rgba(255,193,7,.1)',
+   title:'PMFBY Rabi insurance deadline: March 31, 2026',
+   sub:'Karnataka farmers must submit crop insurance claims by March 31. Visit Raitha Samparka Kendra or apply via PM Fasal Bima app.',
+   time:'Today · 8:00 AM'},
+  {tag:'Season Alert', tagColor:'#69f0ae', ic:'🌱', icBg:'rgba(105,240,174,.1)',
+   title:'Cotton sowing window opens April 1 — prepare now',
+   sub:'Dharwad Agriculture University recommends pre-sowing soil treatment with Trichoderma 2.5 kg/acre. Bt cotton seed booking underway.',
+   time:'Yesterday'},
+  {tag:'Price Watch', tagColor:'#42a5f5', ic:'📈', icBg:'rgba(66,165,245,.1)',
+   title:'Tur Dal hits 8-month high at ₹8,900/q on tight supply',
+   sub:'Maharashtra production shortfall pushing prices up nationally. Gulbarga APMC volumes down 30% this week. Good time for growers to sell.',
+   time:'Yesterday'},
+  {tag:'Weather', tagColor:'#ce93d8', ic:'🌦', icBg:'rgba(206,147,216,.1)',
+   title:'IMD: Above-normal temperatures for North Karnataka till April',
+   sub:'Temperatures expected to stay 2-3°C above normal through March–April 2026. Irrigation advisory: increase frequency for tomato and cotton nurseries.',
+   time:'2 days ago'},
+];
+
+function mkSparkSVG(trend, up) {
+  var mn = Math.min.apply(null, trend), mx = Math.max.apply(null, trend);
+  var w = 80, h = 28, pad = 2;
+  var pts = trend.map(function(v, i) {
+    var x = pad + (i / (trend.length - 1)) * (w - 2*pad);
+    var y = pad + (1 - (v - mn) / (mx - mn + .001)) * (h - 2*pad);
+    return x.toFixed(1) + ',' + y.toFixed(1);
+  }).join(' ');
+  var col = up ? '#69f0ae' : '#ff5252';
+  return '<svg viewBox="0 0 '+w+' '+h+'" class="sparksvg" preserveAspectRatio="none">' +
+    '<polyline points="'+pts+'" fill="none" stroke="'+col+'" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>' +
+    '</svg>';
+}
+
+function renderCropCards(data) {
+  var grid = document.getElementById('cpgrid');
+  if(!grid) return;
+  grid.innerHTML = '';
+  data.forEach(function(d) {
+    var chgPct = ((d.price - d.prev) / d.prev * 100);
+    var up = chgPct >= 0;
+    var flat = Math.abs(chgPct) < 0.5;
+    var chgStr = (up ? '+' : '') + chgPct.toFixed(1) + '%';
+    var chgCls = flat ? 'chg-fl' : up ? 'chg-up' : 'chg-dn';
+    var cardCls = flat ? '' : up ? ' up' : ' dn';
+    var fillPct = Math.round((d.price - d.min) / (d.max - d.min) * 100);
+    var fillCol = up ? '#69f0ae' : '#ff5252';
+    var card = document.createElement('div');
+    card.className = 'cpcard rv' + cardCls;
+    card.id = 'cpcard-' + d.id;
+    card.innerHTML =
+      '<div class="cptop"><span class="cpemoji">'+d.e+'</span><span class="cpchg '+chgCls+'">'+chgStr+'</span></div>' +
+      '<div class="cpname">'+d.name+' <span class="cpkn">'+d.kn+'</span></div>' +
+      '<div class="cpprice" id="p-'+d.id+'">₹'+d.price.toLocaleString('en-IN')+'<span class="cpunit">'+d.unit+'</span></div>' +
+      '<div class="cpbar"><div class="cpbarfill" style="width:'+fillPct+'%;background:'+fillCol+'"></div></div>' +
+      '<div class="cpbottom"><span class="cpbestm">📍 Best: <strong>'+d.mandi+'</strong></span><div class="cpspk">'+mkSparkSVG(d.trend, up)+'</div></div>';
+    grid.appendChild(card);
+  });
+}
+
+function renderKIFeed() {
+  var feed = document.getElementById('kifeedMain');
+  if(!feed) return;
+  feed.innerHTML = '';
+  KI_FEED.forEach(function(item) {
+    var card = document.createElement('div');
+    card.className = 'kicard';
+    card.innerHTML =
+      '<div class="kicard-ic" style="background:'+item.icBg+'">'+item.ic+'</div>' +
+      '<div class="kicard-body">' +
+        '<div class="kicard-tag" style="color:'+item.tagColor+'">'+item.tag+'</div>' +
+        '<div class="kicard-title">'+item.title+'</div>' +
+        '<div class="kicard-sub">'+item.sub+'</div>' +
+        '<div class="kicard-time">'+item.time+'</div>' +
+      '</div>';
+    feed.appendChild(card);
+  });
+}
+
+async function fetchMandiPrices() {
+  try {
+    var url = 'https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070' +
+      '?api-key=579b464db66ec23bdd000001cdd3946e44ce4aab825a0f7c63df' +
+      '&format=json&filters%5Bstate.keyword%5D=Karnataka&limit=50';
+    var r = await fetch(url);
+    if(!r.ok) throw new Error('api fail');
+    var data = await r.json();
+    var records = data.records || [];
+    if(!records.length) throw new Error('empty');
+    // Map API results onto MKTDATA
+    var cropMap = {tomato:'Tomato',onion:'Onion',maize:'Maize',chilli:'Chilli',groundnut:'Groundnut',cotton:'Cotton'};
+    records.forEach(function(rec) {
+      var cn = (rec.commodity || '').toLowerCase();
+      MKTDATA.forEach(function(d) {
+        if(cn.indexOf(d.id) >= 0 || cn.indexOf(d.name.toLowerCase()) >= 0) {
+          var newPrice = parseFloat(rec.modal_price) || d.price;
+          if(newPrice > 0) {
+            d.prev = d.price;
+            d.price = newPrice;
+            d.mandi = (rec.market || d.mandi).split(' ')[0];
+            d.trend.push(newPrice); d.trend = d.trend.slice(-7);
+          }
+        }
+      });
+    });
+    return true;
+  } catch(e) { return false; }
+}
+
+async function refreshPrices() {
+  var ic = document.getElementById('rficon');
+  if(ic) ic.style.animation = 'spin 1s linear infinite';
+  var ok = await fetchMandiPrices();
+  renderCropCards(MKTDATA);
+  var now = new Date();
+  var t = now.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
+  var el = document.getElementById('mkttime');
+  if(el) el.textContent = (ok ? 'Live · ' : 'Cached · ') + 'Updated ' + t;
+  if(ic) ic.style.animation = '';
+  // Update ticker too
+  updateTicker();
+}
+
+function updateTicker() {
+  var inner = document.getElementById('tkinner');
+  if(!inner) return;
+  var items = MKTDATA.map(function(d) {
+    var up = d.price >= d.prev;
+    var chg = Math.abs((d.price - d.prev) / d.prev * 100).toFixed(1);
+    return '<div class="tkitem"><span class="tkname">'+d.e+' '+d.name+'</span>' +
+      '<span class="tkprice">₹'+d.price.toLocaleString('en-IN')+'/q</span>' +
+      '<span class="tkarrow '+(up?'tkup':'tkdn')+'">'+(up?'▲':'▼')+'</span>' +
+      '<span class="'+(up?'tkup':'tkdn')+'">'+chg+'%</span></div>';
+  }).join('') +
+  '<div class="tkitem"><span class="tkname">📍 Hubli APMC</span><span class="tkprice">Open ✓</span><span style="color:#69f0ae"> 7AM–6PM</span></div>' +
+  '<div class="tkitem"><span class="tkname">📍 Dharwad APMC</span><span class="tkprice">Open ✓</span><span style="color:#69f0ae"> 7AM–6PM</span></div>';
+  // Duplicate for seamless loop
+  inner.innerHTML = items + items;
+}
+
+function fetchWeatherForMetrics() {
+  // Uses Dharwad coords
+  fetch('https://api.open-meteo.com/v1/forecast?latitude=15.45&longitude=75.01&current_weather=true&hourly=relativehumidity_2m,rain,windgusts_10m&timezone=Asia%2FKolkata&forecast_days=3')
+    .then(function(r){return r.json();})
+    .then(function(d){
+      var cw = d.current_weather || {};
+      if(cw.temperature !== undefined) {
+        var t = document.getElementById('curTemp');
+        if(t) { t.textContent = cw.temperature + '°C'; t.className = 'kidmd-val '+(cw.temperature>38?'r':cw.temperature>33?'a':'g'); }
+      }
+      if(d.hourly) {
+        var hum = d.hourly.relativehumidity_2m;
+        var rn  = d.hourly.rain;
+        var gst = d.hourly.windgusts_10m;
+        if(hum && hum[0] !== undefined) { var h2=document.getElementById('curHum'); if(h2){h2.textContent=hum[0]+'%';h2.className='kidmd-val '+(hum[0]>70?'r':hum[0]>50?'a':'g');}}
+        if(rn)  { var total72=rn.slice(0,72).reduce(function(a,x){return a+(x||0);},0); var r2=document.getElementById('curRain'); if(r2){r2.textContent=total72>5?total72.toFixed(0)+'mm likely':'Low';r2.className='kidmd-val '+(total72>10?'r':total72>3?'a':'g');}}
+        if(gst) { var mg=Math.max.apply(null,gst.slice(0,24).map(function(x){return x||0;})); var w2=document.getElementById('curWind'); if(w2){w2.textContent=mg.toFixed(0)+' km/h';w2.className='kidmd-val '+(mg>50?'r':mg>30?'a':'g');}}
+      }
+    }).catch(function(){});
+}
+
+// Spin CSS
+(function(){var s=document.createElement('style');s.textContent='@keyframes spin{to{transform:rotate(360deg)}}';document.head.appendChild(s);})();
+
+// Init
+(function initMarket(){
+  renderCropCards(MKTDATA);
+  renderKIFeed();
+  fetchWeatherForMetrics();
+  // Fire async price refresh
+  setTimeout(refreshPrices, 1200);
+  // Auto-refresh every 30 min
+  setInterval(refreshPrices, 30 * 60 * 1000);
+})();
+
 /* Security */
 document.addEventListener('contextmenu',function(e){e.preventDefault();});
-document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefault();return false;}if((e.ctrlKey||e.metaKey)&&e.shiftKey&&'IJC'.indexOf(e.key.toUpperCase())>=0){e.preventDefault();return
+document.addEventListener('keydown',function(e){if(e.key==='F12'){e.preventDefault();return false;}if((e.ctrlKey||e.metaKey)&&e.shiftKey&&'IJC'.indexOf(e.key.toUpperCase())>=0){e.preventDefault();return false;}});
 document.head.appendChild(document.createComment(' © 2026 Parjanya AI · ak.founderr@gmail.com '));
 </script>
 </body>
